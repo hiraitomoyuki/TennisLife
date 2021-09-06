@@ -1,0 +1,69 @@
+<header class="navbar navbar-fixed-top">
+  <nav>
+    <ul class="nav navbar-nav navbar-left text-left">
+      <li><%= link_to root_path do %>
+        <div class="header-logo"></div>
+      <% end %>
+      </li>
+    </ul>
+  </nav>
+  <nav>
+    <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %>
+      <li><span class="login-name">ログイン : <%= current_user.nickname %>さん</span></li>
+      <li>
+        <% link_to notifications_path(user_id: current_user.id), style: "padding-right: 0;" do %>
+
+          <!--<%# if unchecked_notifications.any? %>-->
+          <!--  <span class="fa-stack">-->
+          <!--    <%#= icon "far", "bell", class: "fa-stack-2x fa-lg", style: "font-size: 1.5em;" %>-->
+          <!--    <%#= icon "fas", "circle", class: "n-circle fa-stack-1x", style: "font-size: 15px;" %>-->
+          <!--  </span>-->
+          <!--<%# else %>-->
+          <!--  <span><%#= icon "far", "bell", class: "fa-lg", style: "font-size: 1.5em;" %></span>-->
+          <!--<%# end %>-->
+
+          <p class="notification">通知</p>
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to user_path(current_user) do %>
+          <span><%= icon "far", "address-book" %> マイページ </span>
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to user_path(current_user) do %>
+          <span><%= icon "far", "address-book" %> サークル検索 </span>
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to user_path(current_user) do %>
+          <span><%= icon "far", "address-book" %> サークル活動記録 </span>
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to user_path(current_user) do %>
+          <span><%= icon "far", "address-book" %> ログアウト </span>
+        <% end %>
+      </li>
+
+      <% else %>
+        <li>
+          <%= link_to new_user_registration_path do %>
+            <span><%= icon "fas", "sign_in_alt" %> 新規登録</span>
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to new_user_session_path do %>
+            <span><%= icon "fas", "door-open" %> ログイン</span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+</header>

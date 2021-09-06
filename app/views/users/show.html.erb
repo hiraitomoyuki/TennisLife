@@ -1,2 +1,85 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="text-center">
+      <h1 class="page-title"><%= @user.nickname %> さんのページ</h1>
+      <%= attachment_image_tag(@user, :image_id, fallback: "no_image.png", size: "300x300", class: "imag-circle") %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <table class="table table-bordered table-condensed">
+
+        <tr>
+          <td class="info">性別</td>
+          <td><%= @user.gender %></td>
+        </tr>
+
+        <tr>
+          <td class="info">所属サークル</td>
+          <% if @user.circle_id.nil? %>
+            <td>無所属</td>
+          <% else %>
+            <td><%= @user.circle.name %></td>
+          <% end %>
+        </tr>
+
+        <tr>
+          <td class="info">使用ラケット</td>
+          <td><%= @user.racket %></td>
+        </tr>
+
+        <tr>
+          <td class="info">得意ショット</td>
+          <td><%= @user.good_shot %></td>
+        </tr>
+
+        <tr>
+          <td class="info">自己紹介</td>
+          <td>
+            <% if @user.introduction.blank? %>
+              <span>よろしくお願いします</span>
+            <% else %>
+              <%= @user.introduction %>
+            <% end %>
+          </td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <% if @user == current_user %>
+      <div class="row button-group">
+
+        <div class="col-xs-2 col-xs-offset-3">
+          <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-primary btn-block" %>
+        </div>
+
+        <div class="col-xs-2">
+          <%= link_to "ブックマーク一覧", bookmarks_user_path(@user), class: "btn btn-primary btn-block" %>
+        </div>
+
+        <div class="col-xs-2">
+          <% if @user.circle_id.present? %>
+            <%= link_to "所属サークル", circle_path(current_user.circle), class: "btn btn-primary btn-block" %>
+          <% else %>
+            <%= link_to "サークルを探す", circles_path, class: "btn btn-primary btn-block" %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row button-group">
+        <div class="col-xs-2">
+          <%= link_to "いいねした投稿", favorites_user_path(@user), class: "btn btn-primary btn-block" %>
+        </div>
+
+        <div class="col-xs-2">
+          <%= link_to "予定一覧", entries_user_path(@user), class: "btn btn-primary btn-block" %>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+</div>
