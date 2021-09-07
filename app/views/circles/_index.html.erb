@@ -1,3 +1,119 @@
 <% if params[:prefecture_code] %>
 
-<h1 class="page-title text-center"><%= prefecture_name %> のサークル</h1>
+<h1 class="page-title text-center"><%= prefecture_name %> のサークル一覧</h1>
+
+<% if prefecture_circles.blank? %>
+  <h2 class="text-center">この都道府県にはサークルがありません。</h2>
+<% else %>
+  <table class="table table-bordered">
+    <thead>
+      <tr class="success">
+        <th>サークル名</th>
+        <th>活動場所</th>
+        <th>人数</th>
+        <th>交流サークル数</th>
+        <th>メンバー募集</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% prefecture_circles.each do |circle| %>
+        <tr>
+          <td><%= link_to circle.name, circle_path(circle) %></td>
+          <td><%= circle.prefecture_name %><% circle.address %></td>
+          <td><%= circle.number_of_people %>人</td>
+          <td><%= circle.matchers.count %></td>
+          <td><%= circle.members_wanted ? "◯" : "x" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<% elsif params[:q] %>
+  <div class="row">
+    <div class="col-xs-3">
+      <h1 class="page-title text left">指定条件</h1>
+      <div class="text-left">
+        <% if params[:q][:prefecture_code_eq].empty? %>
+          <p>都道府県: 指定なし</p>
+        <% else %>
+          <p>都道府県: <%= search_prefecture.name %></p>
+        <% end %>
+        
+        <% if params[:q][:number_of_people_gteq].empty? %>
+					<p>人数: 指定なし</p>
+				<% else %>
+					<p>人数: <%= params[:q][:number_of_people_gteq] %>人以上</p>
+				<% end %>
+				
+				<% if params[:q][:name_cont].empty? %>
+				  <p>サークル名: 指定なし</p>
+				<% else %>
+				  <p>サークル名: <%= params[:q][:name_cout] %></p>
+				<% end %>
+      </div>
+    </div>
+    
+    <div class="col-xs-9">
+      <% if circles.blank? %>
+        <h1 class="page-title text-center">条件に合うサークルはありませんでした。</h1>
+      <% else %>
+        <h1  class="page-title text-center">検索結果</h1>
+        
+        <table class="table table-bordered">
+          <thead>
+            <tr class="success">
+              <th>サークル名</th>
+              <th>活動場所</th>
+              <th>人数</th>
+              <th>メンバー募集</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            <% @circles.each do |circle| %>
+              <tr>
+                <td><%= link_to circle.name, circle_path(circle) %></td>
+                <td><%= circle.prefecture_name %><% circle.address %></td>
+                <td><%= circle.number_of_people %>人</td>
+                <td><%= circle.members_wanted ? "◯" : "x" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
+  
+<% else %>
+  
+<h1 class="page-title text-center">全国のサークル一覧</h1>
+  <% if circles.blank? %>
+    <h2 class="text-center">サークルがありません。</h2>
+  <% else %>
+    <table class="table table-bordered">
+      <thead>
+        <tr class="success">
+          <th>サークル名</th>
+          <th>活動場所</th>
+          <th>人数</th>
+          <th>交流サークル数</th>
+          <th>メンバー募集</th>
+        </tr>
+      </thead>
+   
+      <tbody>
+        <% prefecture_circles.each do |circle| %>
+          <tr>
+            <td><%= link_to circle.name, circle_path(circle) %></td>
+            <td><%= circle.prefecture_name %><% circle.address %></td>
+            <td><%= circle.number_of_people %>人</td>
+            <td><%= circle.matchers.count %></td>
+            <td><%= circle.members_wanted ? "◯" : "x" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>
