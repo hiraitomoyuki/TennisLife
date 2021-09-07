@@ -1,2 +1,21 @@
-<h1>Circles#index</h1>
-<p>Find me in app/views/circles/index.html.erb</p>
+<div class="container">
+  <div class="text-center">
+    <h1 class="page-title">サークル検索</h1>
+    <h3>都道府県をクリックすると、都道府県ごとのサークルを検索することができます。</h3>
+    
+    <div class="row">
+      <div class="col-xs-2 col-xs-offset-5">
+        <%= link_to "サークルを作る", new_circle_path, class: "btn btn-success btn-block" %>
+      </div>
+    </div>
+    
+    <%= render "clickable_map" %>
+  </div>
+  
+  <hr>
+  
+  <div class="circle-search">
+    <%#= render "index", prefecture: @prefecture, prefecture_circles: @prefecture_circles, circle: @circles, search_prefecture: @search_prefecture %> 
+  </div>
+  
+</div>

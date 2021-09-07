@@ -12,6 +12,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user.destroy
+    redirect_to root_path, notice: "退会しました。ご利用ありがとうございました"
   end
 
   def bookmarks
@@ -38,4 +40,9 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user), alert: "他の会員の情報編集・削除は禁止です"
     end
   end
+  
+  def user_params
+    params.require(:user).permit(:gender,:nickname,:email,:image,:postal_code,:address,:racket,:good_shot,:introduction,:circle_id)
+  end
+  
 end
