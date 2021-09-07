@@ -1,2 +1,28 @@
-<h1>Circles#member</h1>
-<p>Find me in app/views/circles/member.html.erb</p>
+<div class="container">
+  <h1 class="page-title text-center"><%= @circle.name %> のメンバー一覧</h1>
+  
+  <table class="table">
+    
+    <thead>
+      <tr class="success">
+        <th class="col-xs-2"></th>
+        <th>性別</th>
+        <th>年齢</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @circle.users.each do |user| %>
+        <tr>
+          <td><%= attachment_image_tag(@user, :image, fallback: "no_image.png", size: "50x50") %><%= link_to user.nickname, user_path(user) %></td>
+          <td><%= user.gender %></td>
+          <td><%= user.age %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <div class="row text-center">
+    <%= link_to "Back", circle_path(@circle), class: "btn btn-primary" %>
+  </div>
+</div>

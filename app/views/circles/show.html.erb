@@ -1,2 +1,157 @@
-<h1>Circles#show</h1>
-<p>Find me in app/views/circles/show.html.erb</p>
+<div class="container">
+  <div class="text-center">
+    <h1 class="page-title"><%= @circle.name %></h1>
+    <div class="form-group">
+      <%= attachment_image_tag(@circle, :image, fallback: "no_image.png", size: "300x300", class: "img-circle") %>
+    </div>
+  </div>
+
+  <div class="row button-group">
+    <div class="col-xs-4">
+      <br>
+      <br>
+      <br>
+      <% if @user.circle_id == @circle.id %>
+        <%= form_with model:current_user, url: user_path(current_user, circle_id: @circle.id) do |f| %>
+          <%= f.hidden_field :circle_id, :value => nil %>
+          <%= f.submit "サークルを脱退する", class: "btn btn-danger" %>
+        <% end %>
+      <% else %>
+        <div id="follow_<%= @circle.id %>">
+          <%= render "follow", circle: @circle %>
+        </div>
+      <% end %>
+    </div>
+
+    <% if @circle.twitter.present? or @circle.facebook.present? or @circle.instagram.present? %>
+      <div class="col-xs-3 col-xs-offset-5">
+        <div class="circle-sns">
+          <%= render "sns", circle: @circle %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr class="success">
+        <th>項目名</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr>
+        <th>サークル名</th>
+        <th><%= @circle.name %></th>
+      </tr>
+
+      <tr>
+        <th>活動テーマ</th>
+        <th><%= @circle.theme %></th>
+      </tr>
+
+      <tr>
+        <th>活動場所(住所)</th>
+        <th><%= @circle.prefecture_name %><%= @circle.address %></th>
+      </tr>
+
+      <tr>
+        <th>練習日</th>
+        <th><%= @circle.practice_day %></th>
+      </tr>
+
+      <tr>
+        <th>人数</th>
+        <th><%= @circle.number_of_people %>人</th>
+      </tr>
+
+      <tr>
+        <th>参加費</th>
+        <th><%= @circle.entry_fee %>円</th>
+      </tr>
+
+      <tr>
+        <th>メンバー募集文</th>
+        <th><%= @circle.crrently_recruiting_player %></th>
+      </tr>
+
+      <tr>
+        <th>サークル紹介文</th>
+        <th><%= @circle.introduction %></th>
+      </tr>
+
+      <% if @circle.homepage_url.present? %>
+        <tr>
+          <th>ホームページ</th>
+          <th><a href="<%= @circle.homepage_url %>"><%= @circle.homepage_url %></a></th>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="raw button-group">
+    <div class="col-xs-3">
+      <%= link_to "サークルの予定", schedules_path(circle_id: @circle.id), class: "btn btn-primary btn-block" %>
+    </div>
+    
+    <div class="col-xs-3">
+      <%= link_to "活動場所地図", map_circle_path(@circle), class: "btn btn-primary btn-block" %>
+    </div>
+    
+    <div class="col-xs-3">
+      <%= link_to "メンバー一覧", member_circle_path(@circle), class: "btn btn-primary btn-block" %>
+    </div>
+    
+    <div class="col-xs-3">
+      <%= link_to "サークル活動記録", articles_path(circle_id: @circle.id), class: "btn btn-primary btn-block" %>
+    </div>
+  </div>
+  
+  <div class="row button-group">
+    <% if @user.circle_id == @circle.id %>
+      <div class="col-xs-3">
+        <%= link_to "通知", notifications_path(circle_id: @circle.id), class: "btn btn-primary btn-block" %>
+      </div>
+    <% end %>
+    
+    <div class="col-xs-3">
+      <% if current_user.circle_id == @circle.id %>
+        <%= link_to "編集", edit_circle_path(@circle), class: "btn btn-primary btn-block" %>
+      <% else %>
+        <div id="bookmark_<%= @circle.id %>">
+          <%= render "bookmark", circle: @circle %>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="col-xs-3">
+      <%= link_to "交流サークル", circle_matching_path(@circle), class: "btn btn-primary btn-block" %>
+    </div>
+    
+    <div class="col-xs-3">
+      <% if @user.circle_id == @circle.id %>
+        <%= link_to "参加希望者",circle_approvals_path(@circle), class: "btn btn-primary btn-block" %>
+      <% elsif @user.circle_id == nil %>
+        <% if @circle.approvals.pluck(:user_id).include?(current_user.id) %>
+          <%= link_to "参加の申請中", "#", class: "btn btn-primary btn-block" %>
+        <% else %>
+          <%= form_with model:@circle.approvals, url: circle_approvals_path(@circle.id) do |f| %>
+            <%= f.hidden_field :circle_id, :value => @circle_id %>
+            <%= f.submit "サークル参加申請", class: "btn btn-primary btn-block" %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <%= link_to "他のサークルに参加済", "#", class: "btn btn-primary btn-block" %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="row button-group">
+    <div class="text-center">
+      <%= link_to "一覧に戻る", circles_path, class: "btn btn-success" %>
+    </div>
+  </div>
+  
+</div>

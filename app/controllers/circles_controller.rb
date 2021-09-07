@@ -13,6 +13,10 @@ class CirclesController < ApplicationController
   end
 
   def show
+    @user = current_user
+    unless @user.circle_id.nil?
+      @current_circle = Circle.find(@user.circle_id)
+    end
   end
 
   def new
@@ -20,12 +24,25 @@ class CirclesController < ApplicationController
   end
 
   def create
+    @circle = Circle.new(circle_params)
+    @user = current_user
+    if @circle.save
+      @user.update(circle_id: @circle.id)
+      redirect_to circle_path, notice: "#{@circle.name}を立ち上げました。"
+    else
+      render :new
+    end
   end
 
   def edit
   end
 
   def update
+    if @circle.update(circle_params)
+      redirect_to circle_path(@circle), notice: "サークルの情報を更新しました。"
+    else
+      render :edit
+    end
   end
 
   def calendar

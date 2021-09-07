@@ -1,0 +1,22 @@
+<div class="text-center">
+  <h3>サークルのSNSはこちら</h3>
+  
+  <% if circle.facebook.present? %>
+    <%= link_to circle.facebook, target: :_blank do %>
+      <%= icon "fab", "facebook" %>
+    <% end %>
+  <% end %>
+  
+  <% if circle.twitter.present? %>
+    <%= link_to circle.twitter, target: :_blank do %>
+      <%= icon "fab", "twitter" %>
+    <% end %>
+  <% end %>
+  
+  <% if circle.instagram.present? %>
+    <%= link_to circle.instagram, target: :_blank do %>
+      <%= icon "fab", "instagram" %>
+    <% end %>
+  <% end %>
+  
+</div>

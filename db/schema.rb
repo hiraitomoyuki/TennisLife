@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_05_061055) do
+ActiveRecord::Schema.define(version: 2021_09_07_074115) do
 
   create_table "approvals", force: :cascade do |t|
     t.integer "user_id"
@@ -57,6 +57,9 @@ ActiveRecord::Schema.define(version: 2021_09_05_061055) do
     t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "twitter"
+    t.string "instagram"
+    t.string "facebook"
   end
 
   create_table "comments", force: :cascade do |t|
