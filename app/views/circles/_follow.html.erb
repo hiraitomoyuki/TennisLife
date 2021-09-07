@@ -1,0 +1,7 @@
+<% unless current_user.circle_id == circle.id || current_user.circle_id == nil %>
+  <% if current_user.circle.following?(circle) %>
+    <%= link_to "フォロー解除", circle_relationships_path(circle.id), method: :delete, remote: true, class: "btn btn-primary" %>
+  <% else %>
+    <%= link_to "フォローする", circle_relationships_path(circle.id), method: :post, remote: true, class: "btn btn-primary" %>
+  <% end %>
+<% end %>

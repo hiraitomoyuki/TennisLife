@@ -9,6 +9,30 @@ class UsersController < ApplicationController
   end
 
   def update
+    if current_user.circle_id.present?
+      @circle = Circle.find(current_user.circle_id)
+    end
+    if @user.update(user_params)
+      if params[:user][:circle_id] == nil
+        redirect_to user_path(@user), notice: "プロフィールを更新しました。"
+      elsif params[:user][:circle_id] != nil
+        if @user.circle_id.nil?
+          @approval = Notification.new(visitor_id: @user.id, circle_visited_id: params[circle_id], action: "withdrawal")
+          @approval.save
+          if @circle.user.empty?
+            @circle.destroy
+          end
+          redirect_to user_path(current_user), alert: "サークルを脱退しました。"
+        else
+          @approval = Approval.find_by(circle_id: params[:user][:circle_id], userid: @user.id, schedule_id: nil)
+          @approval.destroy
+          @user.create_notification_user(@user)
+          redirect_to request.referer, notice: "#{@user.nickname}さんがサークルに参加しました。"
+        end
+      end
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -20,9 +44,11 @@ class UsersController < ApplicationController
   end
 
   def favorites
+    @articles = @user.favorite_articles
   end
 
   def entries
+    @schedules = @user.entry_schedule
   end
 
   def confirm

@@ -28,7 +28,7 @@ class CirclesController < ApplicationController
     @user = current_user
     if @circle.save
       @user.update(circle_id: @circle.id)
-      redirect_to circle_path, notice: "#{@circle.name}を立ち上げました。"
+      redirect_to circles_path, notice: "#{@circle.name}を立ち上げました。"
     else
       render :new
     end
@@ -55,6 +55,8 @@ class CirclesController < ApplicationController
   end
 
   def approvals
+    @approvals = Approval.where(circle_id: @circle.id)
+    @schedule_approvals = Approval.where(circle_id: @circle.id, action: "entry")
   end
   
   private
