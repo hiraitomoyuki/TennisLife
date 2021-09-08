@@ -1,2 +1,5 @@
-<h1>Articles#edit</h1>
-<p>Find me in app/views/articles/edit.html.erb</p>
+<%= render "layouts/error_messages", object: @article %>
+<div class="container">
+  <h1 class="page-title text-center">投稿編集</h1>
+  <%= render "form", article: @article %>
+</div>

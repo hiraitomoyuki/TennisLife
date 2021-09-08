@@ -1,2 +1,31 @@
-<h1>Users#bookmarks</h1>
-<p>Find me in app/views/users/bookmarks.html.erb</p>
+<div class="container">
+  <h1 class="page-title text-center"><%= @user.nickname %> のブックマークサークル一覧</h1>
+  
+  <% if @user.bookmarks.blank? %>
+    <h3 class="text-center">現在ブックマークしているサークルはありません。</h3>
+  <% else %>
+    <table class="table table-bordered">
+      
+      <thead>
+        <tr class="success">
+          <th>サークル名</th>
+          <th>活動場所</th>
+          <th>人数</th>
+          <th>メンバー募集</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <% @user.bookmark_circles.each do |circle| %>
+          <tr>
+            <td><%= link_to circle.name, circle_path(circle) %></td>
+            <td><%= circle.prefecture_name %><%= circle.address %></td>
+            <td><%= circle.number_of_people %></td>
+            <td>◯</td>
+          </tr>
+        <% end %>
+      </tbody>
+      
+    </table>
+  <% end %>
+</div>

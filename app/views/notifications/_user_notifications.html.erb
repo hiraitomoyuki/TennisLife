@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="col-xs-4 col-xs-offset-4">
+    <div class="form-inline">
+      
+      <% notifications.each do |notification| %>
+        <% if notification.visitor.present? %>
+        <span>
+          <%= link_to notification.visitor.nickname, user_path(notification.visitor) %>さんが
+        </span>
+      <% end %>
+        <% case notification.action %>
+        
+          <% when "circle" then %>
+            <%= "サークルに加入しました。" %>
+            
+          <% when "withdrawal" then %>
+            <%= "サークルから脱退しました。" %>
+            
+          <% when "follow" then %>
+            <%= "あなたをフォローしました" %>
+            
+          <% when "favorite" then %>
+            <%= link_to "サークルの投稿", notification.article, style: "font-weight: bold:" %>
+            <%= "にいいねしました。" %>
+            
+          <% when "comment" then %>
+            <% if notification.comment.article.circle_id == notification.circle_visited.id %>
+              <%= link_to "あなたの投稿", notification.article, style: "font-weight: bold;" %>
+              <%= "にコメントしました。" %>
+            <% else %>
+              <span>
+                <%= link_to notification.comment.article.circle.name + "さんの投稿", article_path(notification.comment.article) %>
+                <%= "にコメントしました。" %>
+              </span>
+            <% end %>
+            <p class="text-muted text-center mb-0">
+              <%= notification.comment.comment %>
+            </p>
+            
+          <% when "article" then %>
+            <%= link_to "新しいサークル活動記録", notification.article, style: "font-weight: bold;" %>
+            <%= "を投稿しました。" %>
+            
+          <% when "schedule" then %>
+            <%= link_to "新しい予定", notification.schedule, style: "font-weight: bold;" %>
+            <%= "を作成しました。" %>
+            <p class="text-muted text-center mb-0">
+              <%= notification.schedule.start_date.strftime("%Y-%m-%d") %>
+              <%= notification.schedule.title %>
+            </p>
+            
+            <% when "approval" then %>
+              <% if notification.schedule_id.nil? %>
+                <%= link_to "サークルへの参加", approvals_circle_path(id: notification.circle_visited), style: "font-weight: bold;" %>
+                <%= "を希望しています。" %>
+              <% else %>
+                <%= link_to "予定への参加", schedules_path(circle_id: params[:circle_id]), style: "font-weight: bold;" %>
+                <%= "を希望しています。" %>
+              <% end %>
+            <% end %>
+            <div class="small text-muted text-right">
+              <%= time_ago_in_words(notification.created_at).upcase %><%= "前" %>
+            </div>
+            <hr>
+          <% end %>
+    </div>
+  </div>
+</div>

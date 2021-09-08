@@ -1,0 +1,25 @@
+<% if schedule.circle_id == current_user.circle_id %>
+  <% if schedule.entry_by?(current_user) %>
+    <%= link_to "やっぱり不参加", schedule_entries_path(schedule.id), method: :delete, remote: true, class: "btn btn-danger" %>
+  <% else %>
+    <%= link_to "参加する", schedule_entries_path(schedule.id), method: :post, remote: true, class: "btn btn-primary" %>
+  <% end %>
+  
+<% else %>
+
+  <% if schedule.circle.approvals.pluck(:user_id).include?(current_user.id) %>
+    <%= form_with model:schedule.circle.approvals, url: approval_path(schedule_id), method: :delete do |f| %>
+      <%= f.hidden_field :circle_id, :value => schedule.circle_id %>
+      <%= f.hidden_field :schedule_id, :value => schedule.id %>
+      <%= f.submit "申請の取り消し", class: "btn btn-danger" %>
+    <% end %>
+    
+  <% else %>
+  
+    <%= form_with model:schedule.circle.approvals, url: circle_approval_path(schedule.circle_id) do |f| %>
+      <%= f.hidden_field :circle_id, :value => schedule.circle_id %>
+      <%= f.hidden_field :schedule_id, :value => schedule.id %>
+      <%= f.submit "参加予定の申請", class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
+<% end %>

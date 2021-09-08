@@ -1,0 +1,73 @@
+<% @schedules.each do |schedule| %>
+  <div id="modalSchedule<%= schedule.id %>" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-nm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="text-center">予定詳細</h2>
+          <button type="button" class="close" data-dismiss="madel"><span>x</span></button>
+        </div>
+        
+        <div class="madel-body">
+          <div class="row">
+            <div class="col-xs-offset-3 col-xs-6">
+              <table class="table table-bordered">
+                
+                <tr>
+                  <th class="info">件名</th>
+                  <th><%= schedule.title %></th>
+                </tr>
+                
+                <tr>
+                  <th class="info">詳細</th>
+                  <th><%= schedule.description %></th>
+                </tr>
+                
+                <tr>
+                  <th class="info">参加人数</th>
+                  <th><%= schedule.entries.count %>人</th>
+                </tr>
+                
+                <tr>
+                  <th class="info">開始日時</th>
+                  <th><%= schedule.start_date.strftime('%Y-%m-%d %H:%M') %></th>
+                </tr>
+                
+                <tr>
+                  <th class="info">終了日時</th>
+                  <th><%= schedule.end_date.strftime('%Y-%m-%d %H:%M') %></th>
+                </tr>
+                
+              </table>
+            </div>
+          </div>
+          
+          <% if current_user.circle_id == schedule.circle_id %>
+            <div class="row button-group">
+              
+              <div class="col-xs-5 col-xs-offset-1">
+                <%= link_to "予定編集", edit_schedule_path(schedule), class: "btn btn-success btn-block" %>
+              </div>
+              
+              <div class="col-xs-5">
+                <%= link_to "予定削除", schedule_path(schedule), method: :delete, class: "btn btn-danger btn-block" %>
+              </div>
+              
+            </div>
+          <% end %>
+        </div>
+        
+        <div class="modal-footer">
+          <div class="text-center">
+            <div class="row button-group">
+              <div class="entry-icon">
+                <a data-toggle="modal" data-target="#modalEntry<%= schedule.id %>" data-backdrop="true"><%= icon "fas", "users" %></a>
+                <span>参加者一覧</span>
+              </div>
+            </div>
+            <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

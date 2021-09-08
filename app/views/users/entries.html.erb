@@ -1,2 +1,43 @@
-<h1>Users#entries</h1>
-<p>Find me in app/views/users/entries.html.erb</p>
+<div class="container">
+  <h1 class="page-title text-center"><%= @user.nickname %> の予定</h1>
+  
+  <% if @user.entries.blank? %>
+    <h3 class="text-center">現在、参加する予定はありません。</h3>
+  <% else %>
+    <table class="table table-bordered">
+      
+      <thead>
+        <tr class="success">
+          <th>件名</th>
+          <th>開始日時</th>
+          <th>終了日時</th>
+          <th>参加者数</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <% @schedules.each do |schedule| %>
+          <tr>
+            
+            <td>
+              <%= link_to schedule.title, schedule_path(schedule) %>
+            </td>
+            
+            <td>
+              <%= schedule.start_day.strftime("%Y-%m-%d %H:%M") %>
+            </td>
+            
+            <td>
+              <%= schedule.end_day.strftime("%Y-%m-%d %H:%M") %>
+            </td>
+            
+            <td>
+              <%= schedule.entries.count %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+      
+    </table>
+  <% end %>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_07_074115) do
+ActiveRecord::Schema.define(version: 2021_09_08_104457) do
 
   create_table "approvals", force: :cascade do |t|
     t.integer "user_id"
@@ -89,8 +89,6 @@ ActiveRecord::Schema.define(version: 2021_09_07_074115) do
   create_table "notifications", force: :cascade do |t|
     t.integer "visitor_id"
     t.integer "visited_id"
-    t.integer "circlue_visitor_id"
-    t.integer "circlue_visited_id"
     t.integer "article_id"
     t.integer "comment_id"
     t.integer "schedule_id"
@@ -103,10 +101,10 @@ ActiveRecord::Schema.define(version: 2021_09_07_074115) do
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "circle_visited_id"
+    t.integer "circle_visitor_id"
     t.index ["approval_id"], name: "index_notifications_on_approval_id"
     t.index ["article_id"], name: "index_notifications_on_article_id"
-    t.index ["circlue_visited_id"], name: "index_notifications_on_circlue_visited_id"
-    t.index ["circlue_visitor_id"], name: "index_notifications_on_circlue_visitor_id"
     t.index ["comment_id"], name: "index_notifications_on_comment_id"
     t.index ["entry_id"], name: "index_notifications_on_entry_id"
     t.index ["favorite_id"], name: "index_notifications_on_favorite_id"

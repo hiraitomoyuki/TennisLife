@@ -1,2 +1,51 @@
-<h1>Relationships#matching</h1>
-<p>Find me in app/views/relationships/matching.html.erb</p>
+<div class="container">
+  <div class="text-center">
+    <h1 class="page-title"><%= @circle.name %>の交流サークル</h1>
+    <p>※お互いにフォローしているサークルが表示されます。</p>
+  </div>
+
+  <% if @circle.matchers.blank? %>
+    <h1 class="text-center">交流サークルはありません。</h1>
+  <% else %>
+    <table class="table">
+
+      <thead>
+        <tr class="success">
+          <th class="col-xs-2"></th>
+          <th>都道府県</th>
+          <th>活動場所</th>
+          <th>人数</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @circles.each do |circle| %>
+          <tr>
+
+            <td>
+              <%= attachment_image_tag(circle, fallback: "no_image.png", size: "50x50") %>
+              <%= link_to circle.name, circle_path(circle) %>
+            </td>
+
+            <td>
+              <%= circle.prefecture_name %>
+            </td>
+
+            <td>
+              <%= circle.address %>
+            </td>
+
+            <td>
+              <%= circle.users.count %>
+            </td>
+　　　　　
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+  <div class="row text-center">
+    <%= link_to "戻る", circle_path(@circle), class: "btn btn-primary" %>
+  </div>
+</div>

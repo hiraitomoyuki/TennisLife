@@ -1,2 +1,49 @@
-<h1>Users#favorites</h1>
-<p>Find me in app/views/users/favorites.html.erb</p>
+<div class="container">
+  <h1 class="page-title text-center"><%= @user.nickname %> のお気に入り投稿</h1>
+  
+  <% if @user.favorites.blank? %>
+    <h3 class="text-center">現在、いいねしている投稿はありません。</h3>
+  <% else %>
+    <table class="table table-bordered">
+      
+      <thead>
+        <tr class="success">
+          <th>タイトル</th>
+          <th>投稿サークル</th>
+          <th>投稿日</th>
+          <th>いいね数</th>
+          <th>コメント数</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <% @articles.each do |article| %>
+          <tr>
+            
+            <td>
+              <%= link_to article.title, article_path(article) %>
+            </td>
+            
+            <td>
+              <%= link_to article.circle.name, circle_path(article.circle_id) %>
+            </td>
+            
+            <td>
+              <%= article.created_at.strftime("%Y-%m-%d %H:%M") %>
+            </td>
+            
+            <td>
+              <%= article.favorites.count %>
+            </td>
+            
+            <td>
+              <%= article.comments.count %>
+            </td>
+    
+          </tr>
+        <% end %>
+      </tbody>
+      
+    </table>
+  <% end %>
+</div>

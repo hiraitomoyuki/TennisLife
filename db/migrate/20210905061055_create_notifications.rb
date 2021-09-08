@@ -21,8 +21,8 @@ class CreateNotifications < ActiveRecord::Migration[5.2]
     
     add_index :notifications, :visitor_id
     add_index :notifications, :visited_id
-    add_index :notifications, :circlue_visitor_id
-    add_index :notifications, :circlue_visited_id
+    add_index :notifications, :circle_visitor_id
+    add_index :notifications, :circle_visited_id
     add_index :notifications, :article_id
     add_index :notifications, :comment_id
     add_index :notifications, :schedule_id

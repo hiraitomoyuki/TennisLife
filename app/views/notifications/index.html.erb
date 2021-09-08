@@ -1,2 +1,22 @@
-<h1>Notifications#index</h1>
-<p>Find me in app/views/notifications/index.html.erb</p>
+<h1 class="page-title text-center">通知一覧</h1>
+
+<% if params[:circle_id] %>
+  <% if @circle_notifications.exists? %>
+    <%= render "circle_notification", circle_notifications: @circle_notifications %>
+    <div class="text-center">
+      <%= paginate @circle_notifications %>
+    </div>
+  <% else %>
+    <h3 class="text-center">通知はありません。</h3>
+  <% end %>
+  
+<% else %>
+  <% if @notifications.exists? %>
+    <%= render "user_notifications", notifications: @notifications %>
+    <div class="text-center">
+      <%= paginate @notifications %>
+    </div>
+  <% else %>
+    <h3 class="text-center">通知はありません。</h3>
+  <% end %>
+<% end %>

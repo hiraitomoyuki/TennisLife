@@ -1,2 +1,60 @@
-<h1>Schedules#index</h1>
-<p>Find me in app/views/schedules/index.html.erb</p>
+<%= render "layouts/error_messages", object: @circle %>
+<div class="container">
+  <div class="text-center">
+    <h1 class="page-title"><%= @circle.name %>の予定</h1>
+    <h4>※日付をクリックすると予定登録、予定をクリックすると詳細を確認することができます。</h4>
+  </div>
+
+  <div class="button-group">
+    <%= link_to "サークルに戻る", circle_path(@circle), class: "btn btn-primary" %>
+  </div>
+
+  <div id="calendar"></div>
+  <% if @circle.id == current_user.circle_id %>
+    <%= render "form_new", schedule: @schedule %>
+  <% end %>
+
+  <div id="modalSchedule">
+    <%= render "show", schedules: @schedules %>
+  </div>
+
+  <%= render "entry_users", schedules: @schedules %>
+
+</div>
+
+<script>
+
+// fullcalendar呼び出し
+$(document).ready(function() {
+$('#calendar').fullCalendar({
+    schedules: '/schedules?circle_id=<%= @circle.id %>/.json',
+    timeFormat: 'H:mm',
+    scheduleColor: '#63ceef',
+    lang: 'ja',
+    navLinks: true,
+    selectable: true,
+    selectHelper: true,
+    header: {
+        left: "month agendaWeek agendaDay ",
+        center: "title"
+    },
+    dayClick: function(start, end,  jsSchedule, view) {
+        // クリックした日付を代入
+        $('#schedule_start_date_1i').val(moment(start).year());
+        $('#schedule_start_date_2i').val(moment(start).month()+1);
+        $('#schedule_start_date_3i').val(moment(start).date());
+        $('#schedule_end_date_1i').val(moment(start).year());
+        $('#schedule_end_date_2i').val(moment(start).month()+1);
+        $('#schedule_end_date_3i').val(moment(start).date());
+        $('#inputScheduleForm').modal('show');
+    },
+    scheduleClick : function(schedule, jsSchedule , view) {
+                jsSchedule.preventDefault();
+                $(`#modalSchedule${schedule.id}`).modal('show');
+            },
+
+  });
+
+});
+
+</script>
