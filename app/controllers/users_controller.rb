@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   end
 
   def entries
-    @schedules = @user.entry_schedule
+    @schedules = @user.entry_schedules
   end
 
   def confirm

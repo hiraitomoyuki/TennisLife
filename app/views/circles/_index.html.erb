@@ -2,7 +2,7 @@
 
 <h1 class="page-title text-center"><%= prefecture_name %> のサークル一覧</h1>
 
-<% if prefecture_circles.blank? %>
+<% if prefecture_circle.blank? %>
   <h2 class="text-center">この都道府県にはサークルがありません。</h2>
 <% else %>
   <table class="table table-bordered">
@@ -17,7 +17,7 @@
     </thead>
     
     <tbody>
-      <% prefecture_circles.each do |circle| %>
+      <% prefecture_circle.each do |circle| %>
         <tr>
           <td><%= link_to circle.name, circle_path(circle) %></td>
           <td><%= circle.prefecture_name %><% circle.address %></td>
@@ -56,7 +56,7 @@
     </div>
     
     <div class="col-xs-9">
-      <% if circles.blank? %>
+      <% if circle.blank? %>
         <h1 class="page-title text-center">条件に合うサークルはありませんでした。</h1>
       <% else %>
         <h1  class="page-title text-center">検索結果</h1>
@@ -89,7 +89,7 @@
 <% else %>
   
 <h1 class="page-title text-center">全国のサークル一覧</h1>
-  <% if circles.blank? %>
+  <% if circle.blank? %>
     <h2 class="text-center">サークルがありません。</h2>
   <% else %>
     <table class="table table-bordered">
@@ -104,7 +104,7 @@
       </thead>
    
       <tbody>
-        <% prefecture_circles.each do |circle| %>
+        <% circle.each do |circle| %>
           <tr>
             <td><%= link_to circle.name, circle_path(circle) %></td>
             <td><%= circle.prefecture_name %><% circle.address %></td>
