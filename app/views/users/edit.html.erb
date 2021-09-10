@@ -7,7 +7,7 @@
 </div>
 
 <div class="row">
-  <div class="col-md-8 offset-md-5">
+  <div class="col-md-8 offset-md-4">
     <div class="form-horizontal">
       <%= form_with model: @user, local: true do |f| %>
 
@@ -96,16 +96,16 @@
           </div>
         </div>
 
-       
-          
-            <div class="col-md-6">
+        <div class="row button-group">
+         
+            <div class="col-md-3">
               <%= f.submit "更新", class: "btn btn-success btn-block" %>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
               <%= link_to "退会する", confirm_path(id: current_user.id), class: "btn btn-danger btn-block" %>
             </div>
-         
-        
+          
+        </div>
 
       <% end %>
     </div>
