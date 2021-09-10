@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_circles, through: :bookmarks, source: :team
   has_many :entries, dependent: :destroy
-  has_many :entry_schedules, through: :entries, source: :event
+  has_many :entry_schedules, through: :entries, source: :schedule
   has_many :favorites, dependent: :destroy
   has_many :favorite_articles, through: :favorites, source: :article
   has_many :comments, dependent: :destroy

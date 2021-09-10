@@ -12,9 +12,130 @@
  *
  *= require_tree .
  *= require fullcalendar
- *= require_self
  */
 
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+ body{
+  padding-bottom: 50px;
+ }
+
+ .footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+ }
+
+ footer p {
+  margin: 20px 0;
+  color: white;
+}
+
+.header-logo{
+  background-image: image-url("text_logo.png");
+  background-size: cover;
+  width: 300px;
+  height: 150px;
+}
+
+ header{
+  background-color: rgba(0,0,0,0.4);
+ }
+
+ footer{
+ 	background-color: green;
+ }
+
+ .team-image{
+ 	display: flex;
+ 	align-items: center;
+ }
+
+ .button-group{
+  margin-bottom: 20px;
+}
+
+.navbar-right{
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+.text-group{
+  margin-bottom: 30px;
+}
+
+.nav a, .login-name{
+  color: white;
+  font-size: 18px;
+  line-height: 50px;
+  text-decoration: none;
+}
+
+.notification {
+  float: right;
+  line-height: 20px;
+  padding-left: 5px;
+  padding-right: 15px;
+}
+
+.sns-link{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.sns-link i{
+  font-size: 45px;
+  margin-right: 20px;
+}
+
+.page-title{
+  margin-top: 100px;
+}
+
+.error h1{
+  margin-top: 100px;
+}
+
+.flash{
+  padding-top: 80px;
+  font-size: 20px;
+}
+
+.alert{
+  margin-bottom: 0;
+}
+
+#error_explanation{
+  margin-top: 80px;
+}
+
+.n-circle{
+  position: absolute;
+  padding-left: 2rem;
+  padding-top: 0rem;
+  color: #efa04c;
+}
+
+.fa-stack i{
+  font-size: 20px;
+}

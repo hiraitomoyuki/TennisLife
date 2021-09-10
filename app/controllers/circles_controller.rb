@@ -46,6 +46,7 @@ class CirclesController < ApplicationController
   end
 
   def calendar
+    @schedules = @circle.schedules
   end
 
   def map

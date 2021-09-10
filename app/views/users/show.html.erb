@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
-    <div class="text-center">
-      <h1 class="page-title"><%= @user.nickname %> さんのページ</h1>
-      <%= attachment_image_tag(@user, :image, fallback: "no_image.png", size: "300x300", class: "imag-circle") %>
+    <div class="col-md-6 offset-md-3">
+      <h1 class="page-title offset-md-2"><%= @user.nickname %> さんのページ</h1>
+      <%= attachment_image_tag(@user, :image, fallback: "no_image.png", size: "300x300", class: "imag-circle offset-md-3") %>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-xs-6 col-xs-offset-3">
+    <div class="col-md-6 offset-md-3">
       <table class="table table-bordered table-condensed">
 
         <tr>
@@ -53,15 +53,15 @@
     <% if @user == current_user %>
       <div class="row button-group">
 
-        <div class="col-xs-2 col-xs-offset-3">
+        <div class="col-md-2 offset-md-3">
           <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-primary btn-block" %>
         </div>
 
-        <div class="col-xs-2">
+        <div class="col-md-2">
           <%= link_to "ブックマーク一覧", bookmarks_user_path(@user), class: "btn btn-primary btn-block" %>
         </div>
 
-        <div class="col-xs-2">
+        <div class="col-md-2">
           <% if @user.circle_id.present? %>
             <%= link_to "所属サークル", circle_path(current_user.circle), class: "btn btn-primary btn-block" %>
           <% else %>
@@ -71,11 +71,11 @@
       </div>
 
       <div class="row button-group">
-        <div class="col-xs-2">
+        <div class="col-md-2 offset-md-4">
           <%= link_to "いいねした投稿", favorites_user_path(@user), class: "btn btn-primary btn-block" %>
         </div>
 
-        <div class="col-xs-2">
+        <div class="col-md-2">
           <%= link_to "予定一覧", entries_user_path(@user), class: "btn btn-primary btn-block" %>
         </div>
       </div>

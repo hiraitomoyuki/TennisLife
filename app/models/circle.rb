@@ -6,7 +6,7 @@ class Circle < ApplicationRecord
   has_many :approvals, dependent: :destroy
   
   has_many :active_circle_notifications, class_name: "Notification", foreign_key: "circle_visitor_id", dependent: :destroy
-  has_many :possive_circle_notifications, class_name: "Notification", foreign_key: "circle_visited_id", dependent: :destroy
+  has_many :passive_circle_notifications, class_name: "Notification", foreign_key: "circle_visited_id", dependent: :destroy
   
   
   validates :name, presence: true
@@ -43,7 +43,7 @@ class Circle < ApplicationRecord
   end
   
   def unfollow(circle_id)
-    follower.find_by(followerd_id: circle_id).destroy
+    follower.find_by(followed_id: circle_id).destroy
   end
   
   def following?(circle)

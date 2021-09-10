@@ -1,0 +1,146 @@
+<div class="row">
+  <div class="col-xs-3">
+    
+    <h3>人気タグ</h3>
+    <table class="table">
+      <% @tags.zip(@num) do |tag, num| %>
+        <tr>
+          
+          <td>
+            <%= num %>位
+          </td>
+          
+          <td>
+            <div class="tag">
+              <span class="label label-primary">
+                <%= link_to "#{tag.name}", articles_path(tag_name: tag.name) %>
+              </span>
+            </div>
+          </td>
+          
+          <td>
+            <%= icon "fas", "tags" %>
+            <%= tag.taggings_count %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    
+    <h3>人気投稿</h3>
+    <table class="table">
+      <% @favorite_ranks.zip(@num) do |article, num| %>
+        <tr>
+          
+          <td>
+            <%= num %>位
+          </td>
+          
+          <td>
+            <%= link_to article.title, article_path(article) %>
+          </td>
+          
+          <td>
+            <%= icon "far", "thumbs-up" %>
+            <%= article.favorites.count %>
+          </td>
+          
+        </tr>
+      <% end %>
+    </table>
+    
+    <h3>話題の投稿</h3>
+    <table class="table">
+      <% @comment_ranks.zip(@num) do |article, num| %>
+        <tr>
+          
+          <td>
+            <%= num %>位
+          </td>
+          
+          <td>
+            <%= link_to article.title, article_path(article) %>
+          </td>
+          
+          <td>
+            <%= icon "far", "comment-dots" %>
+            <%= article.comments.count %>
+          </td>
+          
+        </tr>
+      <% end %>
+    </table>
+    
+    <h3>投稿が多いサークル</h3>
+    <table class="table">
+      <% @post_ranks.zip(@num) do |circle, num| %>
+        <tr>
+          
+          <td>
+            <%= num %>位
+          </td>
+          
+          <td>
+            <%= link_to circle.name, articles_path(circle_id: circle.id) %>
+          </td>
+          
+          <td>
+            <%= icon "fas", "book" %><%=circle.articles.count %>
+          </td>
+          
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  
+  <div class="col-xs-9">
+    <% if current_user.circle_id.present? %>
+      <h4 class="text-right"><%= link_to "新規投稿", new_article_path, class: "btn btn-success" %></h4>
+    <% end %>
+    
+    <table class="table table-bordered">
+      
+      <thead>
+        <tr class="success">
+          <th>タイトル</th>
+          <th>投稿サークル</th>
+          <th>登校日</th>
+          <th>タグ</th>
+          <th>いいね数</th>
+          <th>コメント数</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <% articles.each do |article| %>
+          <tr>
+            
+            <td>
+              <%= link_to article.title, article_path(article) %>
+            </td>
+            
+            <td>
+              <%= link_to article.circle.name, circle_path(article.circle_id) %>
+            </td>
+            
+            <td>
+              <%= article.created_at.strftime("%Y-%m-%d %H-%M") %>
+            </td>
+            
+            <td>
+              <%= render "articles/tag_list", tag_list: article.tag_list %>
+            </td>
+            
+            <td>
+              <%= icon "far", "thumbs-up" %><%= article.favorites.count %>
+            </td>
+            
+            <td>
+              <%= icon "far", "comment-dats" %><%= article.comments.count %>
+            </td>
+            
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
