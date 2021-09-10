@@ -24,7 +24,7 @@ class User < ApplicationRecord
 
   attachment :image
 
-  enum sex: { "男性": 0, "女性": 1 }
+  enum gender: { "男性": 0, "女性": 1 }
 
   # 住所自動入力
   include JpPrefecture

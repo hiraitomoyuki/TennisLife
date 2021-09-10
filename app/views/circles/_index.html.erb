@@ -1,8 +1,8 @@
 <% if params[:prefecture_code] %>
 
-<h1 class="page-title text-center"><%= prefecture_name %> のサークル一覧</h1>
+<h1 class="page-title text-center"><%= prefecture.name %> のサークル一覧</h1>
 
-<% if prefecture_circle.blank? %>
+<% if prefecture_circles.blank? %>
   <h2 class="text-center">この都道府県にはサークルがありません。</h2>
 <% else %>
   <table class="table table-bordered">
@@ -15,9 +15,9 @@
         <th>メンバー募集</th>
       </tr>
     </thead>
-    
+
     <tbody>
-      <% prefecture_circle.each do |circle| %>
+      <% prefecture_circles.each do |circle| %>
         <tr>
           <td><%= link_to circle.name, circle_path(circle) %></td>
           <td><%= circle.prefecture_name %><% circle.address %></td>
@@ -32,21 +32,21 @@
 
 <% elsif params[:q] %>
   <div class="row">
-    <div class="col-xs-3">
-      <h1 class="page-title text left">指定条件</h1>
+    <div class="col-md-3">
+      <h1 class="page-title text-left">指定条件</h1>
       <div class="text-left">
         <% if params[:q][:prefecture_code_eq].empty? %>
           <p>都道府県: 指定なし</p>
         <% else %>
           <p>都道府県: <%= search_prefecture.name %></p>
         <% end %>
-        
+
         <% if params[:q][:number_of_people_gteq].empty? %>
 					<p>人数: 指定なし</p>
 				<% else %>
 					<p>人数: <%= params[:q][:number_of_people_gteq] %>人以上</p>
 				<% end %>
-				
+
 				<% if params[:q][:name_cont].empty? %>
 				  <p>サークル名: 指定なし</p>
 				<% else %>
@@ -54,13 +54,13 @@
 				<% end %>
       </div>
     </div>
-    
-    <div class="col-xs-9">
+
+    <div class="col-md-9">
       <% if circle.blank? %>
-        <h1 class="page-title text-center">条件に合うサークルはありませんでした。</h1>
+        <h2 class="page-title text-center">条件に合うサークルはありませんでした。</h1>
       <% else %>
         <h1  class="page-title text-center">検索結果</h1>
-        
+
         <table class="table table-bordered">
           <thead>
             <tr class="success">
@@ -70,7 +70,7 @@
               <th>メンバー募集</th>
             </tr>
           </thead>
-          
+
           <tbody>
             <% @circles.each do |circle| %>
               <tr>
@@ -85,9 +85,9 @@
       <% end %>
     </div>
   </div>
-  
+
 <% else %>
-  
+
 <h1 class="page-title text-center">全国のサークル一覧</h1>
   <% if circle.blank? %>
     <h2 class="text-center">サークルがありません。</h2>
@@ -102,7 +102,7 @@
           <th>メンバー募集</th>
         </tr>
       </thead>
-   
+
       <tbody>
         <% circle.each do |circle| %>
           <tr>

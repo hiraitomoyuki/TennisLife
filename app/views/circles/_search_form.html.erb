@@ -1,40 +1,40 @@
 <div class="form-horizontal">
   <h3>詳細検索</h3>
-  
+
   <%= search_form_for(@q, url:circles_path) do |f| %>
     <div class="form-group">
-      <%= f.label :prefecture_code_eq, "都道府県", class: "col-xs-4" %>
-      <div class="col-xs-3">
-        <%= f.collection_select :prefecture_code_eq, JpPrefecture::Prefecture.all, :code, :name, include_blank: "指定なし" %> 
+      <%= f.label :prefecture_code_eq, "都道府県", class: "col-md-8" %>
+      <div class="col-md-3 offset-md-3">
+        <%= f.collection_select :prefecture_code_eq, JpPrefecture::Prefecture.all, :code, :name, include_blank: "指定なし" %>
       </div>
     </div>
-    
+
     <div class="form-group">
-      <%= f.label :name_cont, "サークル名", class: "col-xs-4" %>
-      <div class=" col-xs-3">
+      <%= f.label :name_cont, "サークル名", class: "col-md-7" %>
+      <div class=" col-md-3">
         <%= f.search_field :name_cont %>
       </div>
     </div>
-    
+
     <div class="form-group">
-      <%= f.label :address_cont, "住所", class: "col-xs-4" %>
-      <div class=" col-xs-3">
+      <%= f.label :address_cont, "住所", class: "col-md-4" %>
+      <div class=" col-md-3">
         <%= f.search_field :address_cont %>
       </div>
     </div>
-    
+
     <div class="form-group">
-      <%= f.label :number_of_people_gteq, "人数", class: "col-xs-4" %>
-      <div class=" col-xs-3">
-        <%= f.select :number_of_people_gteq, {"1人以上": 1, "5人以上": 5, "10人以上": 10, "20人以上": 20, "30人以上": 30, "40人以上": 40, "50人以上": 50},{include_blank: "指定なし"} %>
+      <%= f.label :number_of_people_gteq, "人数", class: "col-md-4" %>
+      <div class=" col-md-10">
+        <%= f.select :number_of_people_gteq, {"1人以上": 1, "5人以上": 5, "10人以上": 10, "20人以上": 20, "30人以上": 30, "40人以上": 40, "50人以上": 50},{include_blank: "指定なし"}, class: "offset-md-3" %>
       </div>
     </div>
-    
+
     <div class="form-group">
-      <div class=" col-xs-5 col-xs-offset-4">
+      <div class=" col-md-8 offset-md-2">
         <%= f.submit "検索", class: "btn btn-primary btn-block" %>
       </div>
     </div>
-    
+
   <% end %>
 </div>

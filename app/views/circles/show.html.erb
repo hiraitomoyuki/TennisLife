@@ -91,32 +91,32 @@
     </tbody>
   </table>
 
-  <div class="raw button-group">
-    <div class="col-xs-3">
+  <div class="row button-group">
+    <div class="col-3">
       <%= link_to "サークルの予定", schedules_path(circle_id: @circle.id), class: "btn btn-primary btn-block" %>
     </div>
     
-    <div class="col-xs-3">
+    <div class="col-3">
       <%= link_to "活動場所地図", map_circle_path(@circle), class: "btn btn-primary btn-block" %>
     </div>
     
-    <div class="col-xs-3">
+    <div class="col-3">
       <%= link_to "メンバー一覧", member_circle_path(@circle), class: "btn btn-primary btn-block" %>
     </div>
     
-    <div class="col-xs-3">
+    <div class="col-3">
       <%= link_to "サークル活動記録", articles_path(circle_id: @circle.id), class: "btn btn-primary btn-block" %>
     </div>
   </div>
   
   <div class="row button-group">
     <% if @user.circle_id == @circle.id %>
-      <div class="col-xs-3">
+      <div class="col-3">
         <%= link_to "通知", notifications_path(circle_id: @circle.id), class: "btn btn-primary btn-block" %>
       </div>
     <% end %>
     
-    <div class="col-xs-3">
+    <div class="col-3">
       <% if current_user.circle_id == @circle.id %>
         <%= link_to "編集", edit_circle_path(@circle), class: "btn btn-primary btn-block" %>
       <% else %>
@@ -126,11 +126,11 @@
       <% end %>
     </div>
     
-    <div class="col-xs-3">
+    <div class="col-3">
       <%= link_to "交流サークル", circle_matching_path(@circle), class: "btn btn-primary btn-block" %>
     </div>
     
-    <div class="col-xs-3">
+    <div class="col-3">
       <% if @user.circle_id == @circle.id %>
         <%= link_to "参加希望者",circle_approvals_path(@circle), class: "btn btn-primary btn-block" %>
       <% elsif @user.circle_id == nil %>
