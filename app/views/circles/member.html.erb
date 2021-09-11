@@ -8,6 +8,7 @@
         <th class="col-xs-2"></th>
         <th>性別</th>
         <th>年齢</th>
+        <th>得意ショット</th>
       </tr>
     </thead>
     
@@ -17,6 +18,7 @@
           <td><%= attachment_image_tag(@user, :image, fallback: "no_image.png", size: "50x50") %><%= link_to user.nickname, user_path(user) %></td>
           <td><%= user.gender %></td>
           <td><%= user.age %></td>
+          <td><%= user.good_shot %></td>
         </tr>
       <% end %>
     </tbody>
