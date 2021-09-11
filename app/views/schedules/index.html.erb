@@ -27,7 +27,7 @@
 // fullcalendar呼び出し
 $(document).ready(function() {
 $('#calendar').fullCalendar({
-    schedules: '/schedules?circle_id=<%= @circle.id %>/.json',
+    schedules: '/schedule?circle_id=<%= @circle.id %>/.json',
     timeFormat: 'H:mm',
     scheduleColor: '#63ceef',
     lang: 'ja',

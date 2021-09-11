@@ -1,65 +1,52 @@
-<div id="inputScheduleForm" class="modal fade" tabindex="-1">
-  <div class="modal-dialog modal-nm">
+<div class="modal" id="new_schedul" tabindex="-1" role="daialog">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title text-center">予定登録</h1>
-        <button type="button" class="close" data-dismiss="modal"><span>x</span></button>
+        <h5 class="modal-title">予定登録</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      
-      <div class="row">
-        <div class="form-horizontal">
-          <%= form_with model: @schedule do |f| %>
-            <div class="modal-body">
-              <div class="error-modal"></div>
-              <div class="col-xs-offset-2">
-                <%= f.hidden_field :circle_id, :value => params[:circle_id] %>
-                
-                <div class="form-group">
-                  <%= f.label :title, "件名", class: "col-xs-2" %>
-                  <div class="col-xs-7">
-                    <%= f.text_field :title, class: "form-control" %>
-                  </div>
-                </div>
-                
-                <div class="form-group">
-                  <%= f.label :description, "詳細", class: "col-xs-2" %>
-                  <div class="col-xs-7">
-                    <%= f.text_area :description, class: "form-control", style: "height: 300px;" %>
-                  </div>
-                </div>
-                
-                <div class="form-group">
-                  <%= f.label :start_date, "開始日時", class: "col-xs-2" %>
-                  <div class="col-xs-7">
-                    <%= f.text_area :start_date, {default: Date.today + 00.hours + 00.minutes, use_month_numbers: true, minute_step: 10} %>
-                  </div>
-                </div>
-                
-                <div class="form-group">
-                  <%= f.label :end_date, "終了日時", class: "col-xs-2" %>
-                  <div class="col-xs-7">
-                    <%= f.text_area :end_date, {default: Date.today + 00.hours + 00.minutes, use_month_numbers: true, minute_step: 10} %>
-                  </div>
-                </div>
-                
+    </div>
+    
+    <div class="modal-body">
+      <div class="form-group field">
+        <%= form_with model: @schedul, remote: true do |f| %>
+          <div class="form-inputs">
+            
+            <div class="form-group">
+              <%= f.label :title, "件名", class: "form-control-label" %>
+              <div class="input-group" data-target-input="nearest">
+                <%= f.text_field :title, class: "form-control" %>
               </div>
             </div>
             
-            <div class="model-footer">
-              <div class="col-xs-offset-2">
-                <div class="form-group">
-                  <div class="col-xs-5">
-                    <%= f.submit "登録", class: "btn btn-success btn-block" %>
-                  </div>
-                  <div class="col-xs-5">
-                    <button type="button" class="btn btn-default btn-block" data-dismiss="modal">閉じる</button>
-                  </div>
-                </div>
+            <div class="form-group">
+              <%= f.label :description, "詳細", class: "form-control-label" %>
+              <div class="input-group" data-target-input="nearest">
+                <%= f.text_field :description, class: "form-control" %>
               </div>
             </div>
             
-          <% end %>
-        </div>
+            <div class="form-group">
+              <%= f.label :start_date, "開始日時", class: "form-control-label" %>
+              <div class="input-group" data-target-input="nearest">
+                <%= f.text_field :start_date, class: "form-control" %>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <%= f.label :end_date, "終了日時", class: "form-control-label" %>
+              <div class="input-group" data-target-input="nearest">
+                <%= f.text_field :end_date, class: "form-control" %>
+              </div>
+            </div>
+          </div>
+          
+          <div class="modal-footer actions">
+            <%= f.submit "登録", class: "btn btn-primary" %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

@@ -1,2 +1,142 @@
-<h1>Articles#show</h1>
-<p>Find me in app/views/articles/show.html.erb</p>
+<%= render 'layouts/error_messages', object: @article %>
+<div class="container">
+  <div class="text-center">
+    <h1 class="page-title"><%= @article.title %></h1>
+    <div class="row">
+      <div class="col-md-3 offset-md-3">
+        <p>投稿日 : <%= @article.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+      </div>
+      <div class="col-md-3">
+        <p>投稿サークル : <%= link_to @article.circle.name, circle_path(@article.circle_id) %></p>
+      </div>
+    </div>
+    <hr>
+
+    <div class="article_body">
+      <%= @article.body %>
+
+      <div class="article_image">
+        <%= attachment_image_tag(@article, :image, size: "200x200") %>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row tag-group">
+      <span>タグ一覧 : </span>
+      <%= render "articles/tag_list", tag_list: @article.tag_list %>
+    </div>
+
+    <hr>
+
+    <div class="row button-group">
+      <div class="article-icon">
+        <div class="favorite_<%= @article.id %>">
+          <%= render "articles/favorite", article: @article %>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <a data-toggle="modal" data-target="#modalComment"><%= icon "far", "comment-dots" %></a>
+        <%= @article.comments.count %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row button-group">
+    <div>
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#CommentPost">コメントする</button>
+    </div>
+  </div>
+
+  <div class="row button-group">
+    <%= link_to "一覧に戻る", articles_path(circle_id: @article.circle_id), class: "btn btn-primary" %>
+  </div>
+
+  <% if @article.circle_id == current_user.circle_id %>
+    <div class="row button-group">
+      <div class="text-center">
+        <%= link_to "投稿編集", edit_article_path(@article), class: "btn btn-success" %>
+        <%= link_to "投稿削除", article_path(@article), method: :delete, class: "btn btn-danger", data: {confirm: "本当に削除してもよろしいですか？"} %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div id="modalComment" class="modal fade" tabindex="-1">
+  <div class="modal-daialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="text-center">コメント一覧</h3>
+      </div>
+      <div class="modal-body">
+        <% if @article.comments.blank? %>
+          <h3 class="text-center">まだコメントがありません。</h3>
+        <% else %>
+          <% article.comments.each do |comment| %>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="text-center">
+                  <%=link_to user_path(comment.user) do %>
+                    <%= attachment_image_tag(comment.user, :image, fallback: "no_image.png", size: "50x50", class: "img-circle", style: "margin-top: 20px;") %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="col-md-7">
+                <p class="text-muted">
+                  <%= comment.user.nickname %>
+                  <%= time_ago_in_words(comment.created_at).upcase %><%= "前" %>
+                </p>
+                <p><%= comment.comment %></p>
+              </div>
+              <% if current_user.id == comment.user_id %>
+                <div class="col-md-2">
+                  <br>
+                  <%= link_to "コメント削除", article_comment_path(comment.article, comment), method: :delete, class: "btn btn-danger" %>
+                </div>
+              <% end %>
+            </div>
+            <hr>
+          <% end %>
+        <% end %>
+
+        <div class="modal-footer">
+          <div class="col-md-3">
+            <button type="button" class="btn btn-default btn-block" data-dismiss="modal">閉じる</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="CommentPost" class="modal fade" tabindex="-1">
+    <div class="modal-daialog modal-nm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="text-center">コメント投稿</h3>
+        </div>
+
+        <%= form_with modl: [@article, @comment] do |f| %>
+          <div class="modal-body">
+            <div class="error-modal"></div>
+            <div class="form-group">
+              <%= f.label :comment, "コメント入力" %>
+              <%= f.text_area :comment, class: "form-control" %>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="form-group">
+              <div class="text-center">
+                <div class="col-md-5 offset-md-1">
+                  <%= f.submit "コメント投稿", class: "btn btn-success btn-block", data: {"turbolinks" => false} %>
+                </div>
+                <div class="col-md-5">
+                  <button type="button" class="btn btn-default btn-block" data-dismiss="modal">閉じる</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
