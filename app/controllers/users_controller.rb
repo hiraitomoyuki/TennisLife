@@ -24,7 +24,7 @@ class UsersController < ApplicationController
           end
           redirect_to user_path(current_user), alert: "サークルを脱退しました。"
         else
-          @approval = Approval.find_by(circle_id: params[:user][:circle_id], userid: @user.id, schedule_id: nil)
+          @approval = Approval.find_by(circle_id: params[:user][:circle_id], userid: @user.id, event_id: nil)
           @approval.destroy
           @user.create_notification_user(@user)
           redirect_to request.referer, notice: "#{@user.nickname}さんがサークルに参加しました。"
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   end
 
   def entries
-    @schedules = @user.entry_schedules
+    @events = @user.entry_events
   end
 
   def confirm

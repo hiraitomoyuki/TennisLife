@@ -1,0 +1,49 @@
+<% events.each do |event| %>
+	<div id='modalEntry<%= event.id %>' class="modal fade" tabindex="-1">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="text-center">参加者一覧</h3>
+				</div>
+				<div class="modal-body">
+					<% if event.entries.blank? %>
+					  <h3 class="text-center">参加者はいません</h3>
+					<% else %>
+					  <table class="table">
+					    <thead>
+						  <tr class="success">
+							<th class="col-md-2"></th>
+							<th>性別</th>
+							<th>年齢</th>
+							<th>得意ショット</th>
+						  </tr>
+						</thead>
+						<tbody>
+						  <% event.entries.each do |entry| %>
+							<tr>
+							  <td><%= attachment_image_tag(entry.user, :image, fallback: 'no_image.png', size: '50x50') %>
+								  <%= link_to entry.user.nickname, user_path(entry.user) %></td>
+							  <td><%= entry.user.gender %></td>
+							  <td><%= entry.user.age %></td>
+							  <td><%= entry.user.good_shot %></td>
+							</tr>
+						  <% end %>
+						</tbody>
+					  </table>
+					<% end %>
+				</div>
+				<div class="modal-footer">
+					<div class="row button-group text-center">
+						<!-- 参加ボタン -->
+						<div id="entry_<%= event.id %>">
+							<%= render 'entry', event: event %>
+						</div>
+					</div>
+					<div class="row button-group text-center">
+						<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<% end %>

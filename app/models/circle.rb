@@ -2,7 +2,7 @@ class Circle < ApplicationRecord
   has_many :users, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :articles, dependent: :destroy
-  has_many :schedules, dependent: :destroy
+  has_many :events, dependent: :destroy
   has_many :approvals, dependent: :destroy
   
   has_many :active_circle_notifications, class_name: "Notification", foreign_key: "circle_visitor_id", dependent: :destroy
