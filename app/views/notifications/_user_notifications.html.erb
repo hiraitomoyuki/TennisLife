@@ -41,20 +41,20 @@
             <%= link_to "新しいサークル活動記録", notification.article, style: "font-weight: bold;" %>
             <%= "を投稿しました。" %>
             
-          <% when "schedule" then %>
-            <%= link_to "新しい予定", notification.schedule, style: "font-weight: bold;" %>
+          <% when "event" then %>
+            <%= link_to "新しい予定", notification.event, style: "font-weight: bold;" %>
             <%= "を作成しました。" %>
             <p class="text-muted text-center mb-0">
-              <%= notification.schedule.start_date.strftime("%Y-%m-%d") %>
-              <%= notification.schedule.title %>
+              <%= notification.event.start_date.strftime("%Y-%m-%d") %>
+              <%= notification.event.title %>
             </p>
             
             <% when "approval" then %>
-              <% if notification.schedule_id.nil? %>
+              <% if notification.event_id.nil? %>
                 <%= link_to "サークルへの参加", approvals_circle_path(id: notification.circle_visited), style: "font-weight: bold;" %>
                 <%= "を希望しています。" %>
               <% else %>
-                <%= link_to "予定への参加", schedules_path(circle_id: params[:circle_id]), style: "font-weight: bold;" %>
+                <%= link_to "予定への参加", events_path(circle_id: params[:circle_id]), style: "font-weight: bold;" %>
                 <%= "を希望しています。" %>
               <% end %>
             <% end %>

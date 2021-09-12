@@ -3,11 +3,11 @@
     <div class="container-fluid">
 
       <h1><%= link_to root_path, class:"navbar-brand" do %>
-          <%= image_tag 'text_logo.png', :size =>'80x80' %>
+          <%= image_tag 'text_logo.png', :size =>'300x80' %>
           <% end %>
       </h1>
 
-      <ul class="navbar-nav justify-content-end">
+      <ul class="navbar-nav justify-content-end navbar-right">
         <% if user_signed_in? %>
           <li class:"nav-item">ログイン : <%= current_user.nickname %> さん</li>
           <li class:"nav-item">

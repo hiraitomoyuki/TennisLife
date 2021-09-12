@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_08_175416) do
+ActiveRecord::Schema.define(version: 2021_09_12_071354) do
 
   create_table "approvals", force: :cascade do |t|
     t.integer "user_id"
     t.integer "circle_id"
-    t.integer "schedule_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "event_id"
   end
 
   create_table "articles", force: :cascade do |t|
@@ -71,11 +71,20 @@ ActiveRecord::Schema.define(version: 2021_09_08_175416) do
   end
 
   create_table "entries", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "schedule_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id", "schedule_id"], name: "index_entries_on_user_id_and_schedule_id", unique: true
+    t.integer "event_id"
+    t.integer "user_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.integer "circle_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "start_date"
+    t.datetime "end_date"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -91,7 +100,6 @@ ActiveRecord::Schema.define(version: 2021_09_08_175416) do
     t.integer "visited_id"
     t.integer "article_id"
     t.integer "comment_id"
-    t.integer "schedule_id"
     t.integer "favorite_id"
     t.integer "entry_id"
     t.integer "approval_id"
@@ -103,6 +111,7 @@ ActiveRecord::Schema.define(version: 2021_09_08_175416) do
     t.datetime "updated_at", null: false
     t.integer "circle_visited_id"
     t.integer "circle_visitor_id"
+    t.integer "event_id"
     t.index ["approval_id"], name: "index_notifications_on_approval_id"
     t.index ["article_id"], name: "index_notifications_on_article_id"
     t.index ["comment_id"], name: "index_notifications_on_comment_id"
@@ -110,7 +119,6 @@ ActiveRecord::Schema.define(version: 2021_09_08_175416) do
     t.index ["favorite_id"], name: "index_notifications_on_favorite_id"
     t.index ["followed_id"], name: "index_notifications_on_followed_id"
     t.index ["follower_id"], name: "index_notifications_on_follower_id"
-    t.index ["schedule_id"], name: "index_notifications_on_schedule_id"
     t.index ["visited_id"], name: "index_notifications_on_visited_id"
     t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end

@@ -1,0 +1,54 @@
+<%= render 'layouts/error_messages', object: @event %>
+<div class="container">
+	<h1 class="page-title text-center">予定編集</h1>
+
+	<div class="row">
+	  <div class="col-md-8 offset-md-4">
+
+		<div class="form-horizontal">
+			<%= form_with model: @event do |f| %>
+				<%= f.hidden_field :circle_id, :value => @event.circle_id %>
+
+				<div class="form-group">
+					<%= f.label :title, "件名", class: "col-md-2" %>
+					<div class="col-md-5">
+						<%= f.text_field :title, class: "form-control" %>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<%= f.label :description, "詳細", class: "col-md-2" %>
+					<div class="col-md-5">
+						<%= f.text_area :description, class: "form-control", style: "height: 300px;"  %>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<%= f.label :start, "開始日時", class: "col-md-2" %>
+					<div class="col-md-6">
+						<%= f.datetime_select :start, use_month_numbers: true, minute_step: 10, class: "form-control"  %>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<%= f.label :end, "終了日時", class: "col-md-2" %>
+					<div class="col-xs-6">
+						<%= f.datetime_select :end, use_month_numbers: true, minute_step: 10, class: "form-control"  %>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="offset-md-2 col-md-5">
+						<%= f.submit "更新", class: "btn btn-success btn-block" %>
+					</div>
+				</div>
+
+			<% end %>
+		</div>
+	  </div>
+	</div>
+</div>
+
+<div class="text-center">
+	<%= link_to "戻る", events_path(circle_id: @event.circle_id) %>
+</div>
