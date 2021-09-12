@@ -16,23 +16,23 @@
       </thead>
       
       <tbody>
-        <% @schedules.each do |schedule| %>
+        <% @events.each do |event| %>
           <tr>
             
             <td>
-              <%= link_to schedule.title, schedule_path(schedule) %>
+              <%= link_to event.title, event_path(event) %>
             </td>
             
             <td>
-              <%= schedule.start_day.strftime("%Y-%m-%d %H:%M") %>
+              <%= event.start_date.strftime("%Y-%m-%d %H:%M") %>
             </td>
             
             <td>
-              <%= schedule.end_day.strftime("%Y-%m-%d %H:%M") %>
+              <%= event.end_date.strftime("%Y-%m-%d %H:%M") %>
             </td>
             
             <td>
-              <%= schedule.entries.count %>
+              <%= event.entries.count %>
             </td>
           </tr>
         <% end %>

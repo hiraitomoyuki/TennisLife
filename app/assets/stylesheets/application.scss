@@ -12,11 +12,16 @@
  *
  *= require_tree .
  *= require fullcalendar
+ *= require jquery.tagit
+ *= require tagit.ui-zendesk
+ *= require_self
  */
 
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+@import "jquery.tagit"; 
+@import "tagit.ui-zendesk";
 
 * {
 	padding: 0;
@@ -35,7 +40,7 @@ html {
   min-height: 100%;
 }
 
- body{
+ body {
   padding-bottom: 50px;
  }
 
@@ -51,45 +56,43 @@ html {
   color: white;
 }
 
-.header-logo{
+.header-logo {
   background-image: image-url("text_logo.png");
   background-size: cover;
   width: 300px;
   height: 150px;
 }
 
- header{
-  background-color: rgba(0,0,0,0.4);
- }
 
- footer{
+ footer {
  	background-color: green;
  }
 
- .team-image{
+ .circle-image {
  	display: flex;
  	align-items: center;
  }
 
- .button-group{
+ .button-group {
   margin-bottom: 20px;
 }
 
-.navbar-right{
+.navbar-right {
   margin-right: 20px;
   margin-top: 20px;
 }
 
-.text-group{
+.text-group {
   margin-bottom: 30px;
 }
 
-.nav a, .login-name{
+.nav a, .login-name {
   color: white;
   font-size: 18px;
   line-height: 50px;
   text-decoration: none;
 }
+
 
 .notification {
   float: right;
@@ -98,44 +101,44 @@ html {
   padding-right: 15px;
 }
 
-.sns-link{
+.sns-link {
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-.sns-link i{
+.sns-link i {
   font-size: 45px;
   margin-right: 20px;
 }
 
-.page-title{
+.page-title {
   margin-top: 100px;
 }
 
-.error h1{
+.error h1 {
   margin-top: 100px;
 }
 
-.flash{
+.flash {
   padding-top: 80px;
   font-size: 20px;
 }
 
-.alert{
+.alert {
   margin-bottom: 0;
 }
 
-#error_explanation{
+#error_explanation {
   margin-top: 80px;
 }
 
-.n-circle{
+.n-circle {
   position: absolute;
   padding-left: 2rem;
   padding-top: 0rem;
   color: #efa04c;
 }
 
-.fa-stack i{
+.fa-stack i {
   font-size: 20px;
 }

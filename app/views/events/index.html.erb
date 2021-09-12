@@ -1,0 +1,61 @@
+<%= render 'layouts/error_messages', object: @circle %>
+<div class="container">
+    <div class="text-center">
+        <h1 class="page-title"><%= @circle.name %>の予定</h1>
+        <h4>※日付をクリックすると予定登録、予定をクリックすると詳細を確認できます</h4>
+    </div>
+
+    <div class="button-group">
+        <%= link_to "サークルに戻る", circle_path(@circle), class: "btn btn-primary" %>
+    </div>
+
+    <div id="calendar"></div>
+    <% if @circle.id == current_user.circle_id %>
+        <!-- 新規登録フォーム -->
+        <%= render 'form_new', event: @event %>
+    <% end %>
+
+    <!-- 予定詳細 -->
+     <div id="modalEvent">
+        <%= render 'show', events: @events %>
+    </div>
+    <!-- 予定参加者 -->
+    <%= render 'entry_users', events: @events %>
+</div>
+
+<script>
+
+// fullcalendar呼び出し
+$(document).ready(function() {
+$('#calendar').fullCalendar({
+    events: '/events?circle_id=<%= @circle.id %>/.json',
+    timeFormat: 'H:mm',
+    eventColor: '#63ceef',
+    lang: 'ja',
+    navLinks: true,
+    selectable: true,
+    selectHelper: true,
+    header: {
+        left: "month agendaWeek agendaDay ",
+        center: "title"
+    },
+    dayClick: function(start, end,  jsEvent, view) {
+        // クリックした日付を代入
+        $('#event_start_date_1i').val(moment(start).year());
+        $('#event_start_date_2i').val(moment(start).month()+1);
+        $('#event_start_date_3i').val(moment(start).date());
+        $('#event_end_date_1i').val(moment(start).year());
+        $('#event_end_date_2i').val(moment(start).month()+1);
+        $('#event_end_date_3i').val(moment(start).date());
+        $('#inputScheduleForm').modal('show');
+    },
+    eventClick : function(event, jsEvent , view) {
+                jsEvent.preventDefault();
+                $(`#modalEvent${event.id}`).modal('show');
+            },
+
+  });
+
+});
+
+</script>

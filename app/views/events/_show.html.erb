@@ -1,0 +1,63 @@
+<% events.each do |event| %>
+	<div id='modalEvent<%= event.id %>' class="modal fade" tabindex="-1">
+	    <div class="modal-dialog modal-nm">
+	        <div class="modal-content">
+	            <div class="modal-header">
+					<h2 class="text-center offset-md-">予定詳細</h2>
+					<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+						<div class="offset-md-3 col-md-6">
+							<table class="table table-bordered">
+								<tr>
+									<th class="info">件名</th>
+									<th><%= event.title %></th>
+								</tr>
+								<tr>
+									<th class="info">詳細</th>
+									<th><%= event.description %></th>
+								</tr>
+								<tr>
+									<th class="info">参加人数</th>
+									<th><%= event.entries.count %>人</th>
+								</tr>
+								<tr>
+									<th class="info">開始日時</th>
+									<th><%= event.start_date.strftime('%Y-%m-%d %H:%M') %></th>
+								</tr>
+								<tr>
+									<th class="info">終了日時</th>
+									<th><%= event.end_date.strftime('%Y-%m-%d %H:%M') %></th>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<% if current_user.circle_id == event.circle_id %>
+						<div class="row button-group">
+							<div class="col-md-5 offset-md-1">
+								<%= link_to "予定編集", edit_event_path(event), class: "btn btn-success btn-block" %>
+							</div>
+							<div class="col-md-5">
+								<%= link_to "予定削除", event_path(event), method: :delete, class: "btn btn-danger btn-block", data: {confirm: "本当に削除してもよろしいですか？"} %>
+							</div>
+						</div>
+					<% end %>
+				</div>
+
+				<div class="modal-footer">
+					<div class="text-center">
+						<div class="row button-group">
+							<div class="entry-icon ">
+								<a data-toggle="modal" data-target="#modalEntry<%= event.id %>" data-backdrop="true"><%= icon "fas", "users" %></a>
+								<span>参加者一覧</span>
+							</div>
+						</div>
+						<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<% end %>

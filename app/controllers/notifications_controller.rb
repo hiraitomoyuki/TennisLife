@@ -8,7 +8,7 @@ class NotificationsController < ApplicationController
                        or(Notification.where(circle_visited_id: current_user.circle_id, action: "circle")).
                        or(Notification.where(circle_visited_id: current_user.circle_id, action: "withdrawal")).
                        or(Notification.where(circle_visited_id: current_user.circle_id, action: "article")).
-                       or(Notification.where(circle_visited_id: current_user.circle_id, action: "schedule")).
+                       or(Notification.where(circle_visited_id: current_user.circle_id, action: "event")).
                        where.not(visitor_id: current_user.id).page(params[:page]).per(20)
       @notifications.where(checked: false).each do |notification|
         notification.update_attributes(checked: true)

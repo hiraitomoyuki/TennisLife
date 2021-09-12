@@ -1,0 +1,54 @@
+<div id="inputScheduleForm" class="modal fade" tabindex="-1">
+	<div class="modal-dialog modal-nm">
+    	<div class="modal-content">
+        	<div class="modal-header">
+				<h1 class="modal-title text-center offset-md-4">予定登録</h1>
+				<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+			</div>
+
+			<div class="row">
+				<div class="form-horizontal offset-md-3">
+					<%= form_with model: @event do |f| %>
+					  <div class="modal-body">
+					    <div class="error-modal"></div>
+					    <div>
+								<%= f.hidden_field :circle_id, :value => params[:circle_id] %>
+								<div class="form-group">
+									<%= f.label :title, "件名" %>
+									<div>
+										<%= f.text_field :title, class: "form-control" %>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<%= f.label :description, "詳細" %>
+									<div>
+										<%= f.text_area :description, class: "form-control", style: "height: 300px;"  %>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<%= f.label :start_date, "開始日時" %>
+									<div>
+										<%= f.datetime_select :start_date, {default: Date.today + 00.hours + 00.minutes, use_month_numbers: true, minute_step: 10}  %>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<%= f.label :end_date, "終了日時" %>
+									<div>
+										<%= f.datetime_select :end_date, {default: Date.today + 00.hours + 00.minutes, use_month_numbers: true, minute_step: 10}  %>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="modal-footer">
+							<%= f.submit "登録", class: "btn btn-success btn-block" %>
+						</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
