@@ -15,7 +15,7 @@ class Comment < ApplicationRecord
     save_notification_comment(current_user, comment_id, user_id) if temp_ids.blank?
   end
 
-  def save_notification_comment(current_user, comment_id, team_visited_id)
+  def save_notification_comment(current_user, comment_id, circle_visited_id)
     # 1つの投稿に複数回通知
     notification = current_user.active_notifications.new(
       article_id: id,

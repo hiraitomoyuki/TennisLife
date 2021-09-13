@@ -3,10 +3,10 @@
   <div class="text-center">
     <h1 class="page-title"><%= @article.title %></h1>
     <div class="row">
-      <div class="col-md-3 offset-md-3">
+      <div class="col-3 offset-3">
         <p>投稿日 : <%= @article.created_at.strftime("%Y-%m-%d %H:%M") %></p>
       </div>
-      <div class="col-md-3">
+      <div class="col-3">
         <p>投稿サークル : <%= link_to @article.circle.name, circle_path(@article.circle_id) %></p>
       </div>
     </div>
@@ -29,14 +29,14 @@
 
     <hr>
 
-    <div class="button-group row offset-md-5">
-      <div class="article-icon offset-md-1">
-        <div class="col-md-1">
+    <div class="button-group row offset-5">
+      <div class="article-icon offset-1">
+        <div class="col-1">
           <div class="favorite_<%= @article.id %>">
             <%= render "articles/favorite", article: @article %>
           </div>
         </div>
-        <div class="col-md-1">
+        <div class="col-1">
           <a data-toggle="modal" data-target="#modalComment"><%= icon "far", "comment-dots" %></a>
           <%= @article.comments.count %>
         </div>
@@ -75,14 +75,14 @@
           <% else %>
             <% @article.comments.each do |comment| %>
               <div class="row">
-                <div class="col-md-3">
+                <div class="col-3">
                   <div class="text-center">
                     <%=link_to user_path(comment.user) do %>
                       <%= attachment_image_tag(comment.user, :image, fallback: "no_image.png", size: "50x50", class: "img-circle", style: "margin-top: 20px;") %>
                     <% end %>
                   </div>
                 </div>
-                <div class="col-md-7">
+                <div class="col-7">
                   <p class="text-muted">
                     <%= comment.user.nickname %>
                     <%= time_ago_in_words(comment.created_at).upcase %><%= "前" %>
@@ -90,7 +90,7 @@
                   <p><%= comment.comment %></p>
                 </div>
                 <% if current_user.id == comment.user_id %>
-                  <div class="col-md-2">
+                  <div class="col-2">
                     <br>
                     <%= link_to "コメント削除", article_comment_path(comment.article, comment), method: :delete, class: "btn btn-danger" %>
                   </div>
@@ -101,7 +101,7 @@
           <% end %>
   
           <div class="modal-footer">
-            <div class="col-md-3">
+            <div class="col-3">
               <button type="button" class="btn btn-default btn-block" data-dismiss="modal">閉じる</button>
             </div>
           </div>

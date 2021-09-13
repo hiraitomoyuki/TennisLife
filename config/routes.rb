@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'contacts/new'
+  get 'contacts/create'
   get 'events/index'
   get 'events/show'
   get 'events/new'
@@ -49,5 +51,10 @@ Rails.application.routes.draw do
   end
 
   resources :notifications, only: [:index]
+  
+  resources :contacts, only: [:new, :create]
+  post 'contacts/confirm', to: 'contacts#confirm', as: 'confirms'
+  post 'contacts/back', to: 'contacts#back', as: 'back'
+  get 'done', to: 'contacts#done', as: 'done'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
