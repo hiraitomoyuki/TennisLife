@@ -7,7 +7,7 @@
   </div>
 
   <div class="row button-group">
-    <div class="col-xs-4">
+    <div class="col-4">
       <br>
       <br>
       <br>
@@ -24,7 +24,7 @@
     </div>
 
     <% if @circle.twitter.present? or @circle.facebook.present? or @circle.instagram.present? %>
-      <div class="col-xs-3 col-xs-offset-5">
+      <div class="col-3 offset-5">
         <div class="circle-sns">
           <%= render "sns", circle: @circle %>
         </div>
@@ -148,7 +148,7 @@
     </div>
   </div>
   
-  <div class="row button-group">
+  <div class="row button-group col-3">
     <div class="text-center">
       <%= link_to "一覧に戻る", circles_path, class: "btn btn-success" %>
     </div>

@@ -9,7 +9,7 @@
 
       <ul class="navbar-nav justify-content-end navbar-right">
         <% if user_signed_in? %>
-          <li class:"nav-item">ログイン : <%= current_user.nickname %> さん</li>
+          <li class:"nav-item"><div class="list">ログイン : <%= current_user.nickname %> さん</div></li>
           <li class:"nav-item">
             <%= link_to "通知", notifications_path(user_id: current_user.id), class:"nav-link" %>
           </li>
