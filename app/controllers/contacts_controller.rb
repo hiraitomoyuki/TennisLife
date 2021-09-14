@@ -2,14 +2,14 @@ class ContactsController < ApplicationController
   def new
     @contact = Contact.new
   end
-  
+
   def confirm
     @contact = Contact.new(contact_params)
     if @contact.invalid?
       render :new
     end
   end
-  
+
   def back
     @contact = Contact.new(contact_params)
     render :new
@@ -24,7 +24,7 @@ class ContactsController < ApplicationController
       render :new
     end
   end
-  
+
   def done
   end
 
@@ -32,6 +32,6 @@ class ContactsController < ApplicationController
   private
 
   def contact_params
-    params.require(:contact).permit(:name, :email, :phone_number, :subject, :message)
+    params.require(:contact).permit(:name, :email, :subject, :message)
   end
 end
