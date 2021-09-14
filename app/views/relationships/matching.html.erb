@@ -11,7 +11,7 @@
 
       <thead>
         <tr class="success">
-          <th class="col-md-2"></th>
+          <th class="col-2"></th>
           <th>都道府県</th>
           <th>活動場所</th>
           <th>人数</th>
@@ -23,7 +23,7 @@
           <tr>
 
             <td>
-              <%= attachment_image_tag(circle, fallback: "no_image.png", size: "50x50") %>
+              <%= attachment_image_tag(circle, :image, fallback: "no_image.png", size: "50x50") %>
               <%= link_to circle.name, circle_path(circle) %>
             </td>
 

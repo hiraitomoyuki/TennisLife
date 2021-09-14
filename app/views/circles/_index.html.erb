@@ -32,7 +32,7 @@
 
 <% elsif params[:q] %>
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-3">
       <h1 class="page-title text-left">指定条件</h1>
       <div class="text-left">
         <% if params[:q][:prefecture_code_eq].empty? %>
@@ -55,7 +55,7 @@
       </div>
     </div>
 
-    <div class="col-md-9">
+    <div class="col-9">
       <% if circle.blank? %>
         <h2 class="page-title text-center">条件に合うサークルはありませんでした。</h1>
       <% else %>

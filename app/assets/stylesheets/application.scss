@@ -20,7 +20,7 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
-@import "jquery.tagit"; 
+@import "jquery.tagit";
 @import "tagit.ui-zendesk";
 
 * {
@@ -61,6 +61,10 @@ html {
   background-size: cover;
   width: 300px;
   height: 150px;
+}
+
+header {
+  background-color: white;
 }
 
 
@@ -142,3 +146,18 @@ html {
 .fa-stack i {
   font-size: 20px;
 }
+
+.Edit-btn {
+  margin-top: 19px;
+}
+
+.Editlink {
+  text-decoration: none;
+  color: white ;
+}
+
+.list {
+  margin-top: 8px;
+  margin-right: 5px;
+}
+
