@@ -1,6 +1,14 @@
+<div class="page-title text-center">
+  <h1>お問い合わせ</h1>
+</div>
+
+<div class="error">
+  <%= render "layouts/error_messages", object: @contact %>
+</div>
+
 <%= form_for(@contact, url: confirms_path) do |f| %>
   <div class="offset-4">
-    <div class="page-title">
+    <div style="padding: 20px 0 0 0;">
       <div class="form-group col-6">
         <%= f.label :name, 'お名前*' %>
         <%= f.text_field :name, autofocus: true, class: 'form-control' %>
