@@ -11,9 +11,9 @@ class User < ApplicationRecord
   belongs_to :circle, optional: true
 
   has_many :bookmarks, dependent: :destroy
-  has_many :bookmark_circles, through: :bookmarks, source: :team
+  has_many :bookmark_circles, through: :bookmarks, source: :circle
   has_many :entries, dependent: :destroy
-  has_many :entry_schedules, through: :entries, source: :schedule
+  has_many :entry_events, through: :entries, source: :event
   has_many :favorites, dependent: :destroy
   has_many :favorite_articles, through: :favorites, source: :article
   has_many :comments, dependent: :destroy
@@ -53,8 +53,8 @@ class User < ApplicationRecord
   # 通知作成
   def create_notification_user(user)
     notification = user.active_notifications.new(
-      team_visited_id: user.team_id,
-      action: 'team'
+      circle_visited_id: user.circle_id,
+      action: 'circle'
     )
     notification.save if notification.valid?
   end

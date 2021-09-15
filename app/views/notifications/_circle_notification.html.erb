@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="col-md-10 offset-md-3">
+  <div class="col-5 offset-4" style="padding-top: 20px;">
 
     <% circle_notifications.each do |notification| %>
       <% if notification.visitor.present? %>
@@ -71,7 +71,7 @@
             <% end %>
 
         <% end %>
-        <div class="small text-muted text-right">
+        <div class="small text-muted">
           <%= time_ago_in_words(notification.created_at).upcase %><%= "前" %>
         </div>
         <hr>

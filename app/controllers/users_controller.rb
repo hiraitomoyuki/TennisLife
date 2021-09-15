@@ -17,14 +17,14 @@ class UsersController < ApplicationController
         redirect_to user_path(@user), notice: "プロフィールを更新しました。"
       elsif params[:user][:circle_id] != nil
         if @user.circle_id.nil?
-          @approval = Notification.new(visitor_id: @user.id, circle_visited_id: params[circle_id], action: "withdrawal")
+          @approval = Notification.new(visitor_id: @user.id, circle_visited_id: params[:circle_id], action: "withdrawal")
           @approval.save
-          if @circle.user.empty?
+          if @circle.users.empty?
             @circle.destroy
           end
           redirect_to user_path(current_user), alert: "サークルを脱退しました。"
         else
-          @approval = Approval.find_by(circle_id: params[:user][:circle_id], userid: @user.id, event_id: nil)
+          @approval = Approval.find_by(circle_id: params[:user][:circle_id], user_id: @user.id, event_id: nil)
           @approval.destroy
           @user.create_notification_user(@user)
           redirect_to request.referer, notice: "#{@user.nickname}さんがサークルに参加しました。"

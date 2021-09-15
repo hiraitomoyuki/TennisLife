@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
-  get 'events/index'
-  get 'events/show'
-  get 'events/new'
-  get 'events/create'
-  get 'events/edit'
-  get 'events/update'
-  get 'events/destroy'
+  
   root 'homes#top'
   get 'homes/about'
   devise_for :users, controllers: {
@@ -49,5 +43,17 @@ Rails.application.routes.draw do
   end
 
   resources :notifications, only: [:index]
+  
+  resources :contacts, only: [:new, :create]
+  post 'contacts/confirm', to: 'contacts#confirm', as: 'confirms'
+  post 'contacts/back', to: 'contacts#back', as: 'back'
+  get 'done', to: 'contacts#done', as: 'done'
+  
+  get 'topics/index'
+  get 'topics/show/:id' => 'topics#show', as: :topics_show
+  delete 'topics/delete/:id' => 'topics#delete', as: :topic_delete
+  post 'topics/create' => 'topics#create'
+  post 'posts/create' => 'post#create', as: :post_create
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -46,7 +46,7 @@ class CirclesController < ApplicationController
   end
 
   def calendar
-    @schedules = @circle.schedules
+    @events = @circle.events
   end
 
   def map
@@ -57,7 +57,7 @@ class CirclesController < ApplicationController
 
   def approvals
     @approvals = Approval.where(circle_id: @circle.id)
-    @schedule_approvals = Approval.where(circle_id: @circle.id, action: "entry")
+    @event_approvals = Approval.where(circle_id: @circle.id, action: "entry")
   end
   
   private

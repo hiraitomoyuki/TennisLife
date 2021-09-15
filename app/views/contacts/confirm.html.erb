@@ -1,0 +1,42 @@
+<div class="page-title offset-5">
+  <table class="offset-1">
+    <tbody>
+      <tr>
+        <td class="text-center" style="width: 30%; padding: 0 20px 20px 0;">お名前</td>
+        <td style="padding-bottom: 20px;"><%= @contact.name %></td>
+      </tr>
+
+      <tr>
+        <td class="text-center" style="width: 30%; padding: 0 20px 20px 0;">メールアドレス</td>
+        <td style="padding-bottom: 20px;"><%= @contact.email %></td>
+      </tr>
+
+      <tr>
+        <td class="text-center" style="width: 30%; padding: 0 20px 20px 0;">件名</td>
+        <td style="padding-bottom: 20px;"><%= @contact.subject %></td>
+      </tr>
+
+      <tr>
+        <td class="text-center" style="padding-right: 20px;">メッセージ</td>
+        <td style="white-space: pre-wrap;"><%= @contact.message %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <%= form_for(@contact) do |f| %>
+    <%= f.hidden_field :name %>
+    <%= f.hidden_field :email %>
+    <%= f.hidden_field :subject %>
+    <%= f.hidden_field :message %>
+    <div class="offset-2"><%= f.submit '送信', class: "btn btn-success" %></div>
+  <% end %>
+  <br>
+  <%= form_for @contact, url: back_path do |f| %>
+    <%= f.hidden_field :name %>
+    <%= f.hidden_field :email %>
+    <%= f.hidden_field :subject %>
+    <%= f.hidden_field :message %>
+    <div class="col-3 offset-1"><%= f.submit '入力画面に戻る', class: "btn btn-secondary btn-block" %></div>
+  <% end %>
+</div>

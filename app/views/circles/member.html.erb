@@ -5,7 +5,7 @@
     
     <thead>
       <tr class="success">
-        <th class="col-xs-2"></th>
+        <th class="col-2"></th>
         <th>性別</th>
         <th>年齢</th>
         <th>得意ショット</th>
@@ -24,7 +24,9 @@
     </tbody>
   </table>
   
-  <div class="row text-center">
-    <%= link_to "戻る", circle_path(@circle), class: "btn btn-primary" %>
+  <div class="row text-center offset-4">
+    <div class="offset-2">
+      <%= link_to "戻る", circle_path(@circle), class: "btn btn-primary" %>
+    </div>
   </div>
 </div>

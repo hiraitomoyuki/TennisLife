@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_12_071354) do
+ActiveRecord::Schema.define(version: 2021_09_14_063637) do
 
   create_table "approvals", force: :cascade do |t|
     t.integer "user_id"
@@ -70,11 +70,20 @@ ActiveRecord::Schema.define(version: 2021_09_12_071354) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "contacts", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "subject", null: false
+    t.text "message", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "entries", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "event_id"
     t.integer "user_id"
+    t.integer "event_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -123,6 +132,15 @@ ActiveRecord::Schema.define(version: 2021_09_12_071354) do
     t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string "name"
+    t.text "body"
+    t.integer "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["topic_id"], name: "index_posts_on_topic_id"
+  end
+
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id", null: false
     t.integer "followed_id", null: false
@@ -168,6 +186,12 @@ ActiveRecord::Schema.define(version: 2021_09_12_071354) do
     t.datetime "updated_at"
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

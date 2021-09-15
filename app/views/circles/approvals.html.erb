@@ -1,12 +1,12 @@
 <div class="container">
   <h1 class="page-title text-center"><%= @circle.name %> への参加希望者</h1>
-  
+
   <% if @approvals.blank? %>
     <h3 class="text-center">現在、参加希望者はいません。</h3>
-    
+
   <% else %>
     <table class="table">
-     
+
       <thead>
         <tr class="success">
           <th class="col-xs-2"></th>
@@ -17,47 +17,47 @@
           <th></th>
         </tr>
       </thead>
-     
+
       <tbody>
         <% @approvals.each do |approval| %>
           <tr>
-           
+
             <td>
               <%= attachment_image_tag(approval.user, :image, fallback: "no_image.png", size: "50x50") %>
               <%= link_to approval.user.nickname, user_path(approval.user) %>
             </td>
-           
+
             <td>
               <%= approval.user.gender %>
             </td>
-           
+
             <td>
               <%= approval.user.age %>
             </td>
-           
+
             <td>
-              <% if approval.schedule_id.nill? %>
+              <% if approval.event_id.nil? %>
                 <%= "サークルへの参加希望" %>
               <% else %>
                 <%= "予定への参加希望" %><br>
-                <%= Schedule.find(approval.schedule_id).start_date.strftime("%Y-%m-%d") %>
-                <%= link_to schedule_path(approval.schedule_id) do %>
-                  <%= Schedule.find(approval.schedule_id).title %>
+                <%= Event.find(approval.event_id).start_date.strftime("%Y-%m-%d") %>
+                <%= link_to event_path(approval.event_id) do %>
+                  <%= Event.find(approval.event_id).title %>
                 <% end %>
               <% end %>
             </td>
-            
+
             <td>
-              <% if approval.schedule_id.nill? %>
+              <% if approval.event_id.nil? %>
                 <%= form_with model:approval.user, url: user_path(approval.user) do |f| %>
                   <%= f.hidden_field :circle_id, :value => @circle.id %>
                   <%= f.submit "承認する", class: "btn btn-primary" %>
                 <% end %>
               <% else %>
-                <%= link_to "承認する", schedule_entries_path(approval.schedule_id, circle_id: @circle.id, user_id: approval.user_id), method: :post, remote: true, class: "btn btn-primary" %>
+                <%= link_to "承認する", event_entries_path(approval.event_id, circle_id: @circle.id, user_id: approval.user_id), method: :post, remote: true, class: "btn btn-primary" %>
               <% end %>
             </td>
-            
+
             <td>
               <%= link_to "拒否する", approval_path(approval), method: :delete, class: "btn btn-danger" %>
             </td>
@@ -66,8 +66,10 @@
       </tbody>
     </table>
   <% end %>
-  
-  <div class="row text-center">
-    <%= link_to "戻る", circle_path(@circle), class: "btn btn-primary" %>
+
+  <div class="row text-center offset-2">
+    <div class="offset-4">
+      <%= link_to "戻る", circle_path(@circle), class: "btn btn-primary" %>
+    </div>
   </div>
 </div>
