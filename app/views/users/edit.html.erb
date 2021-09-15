@@ -57,21 +57,22 @@
         <div class="form-group">
           <%= f.label :postal_code, "郵便番号", class: "col-3" %>
           <div class="col-3">
-            <%= f.text_field :postal_code, class: "form-control" %>
+            <%= f.text_field :postal_code, class: "form-control", id: "user_postcode", maxlength: "7" %>
           </div>
         </div>
 
         <div class="form-group">
           <%= f.label :prefecture_code, "都道府県", class: "col-3" %>
           <div class="col-6">
-            <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name, include_blank: "都道府県", class: "form-control address" %>
+            <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name, include_blank: "都道府県", id: "user_prefecture_code", class: "form-control address" %>
           </div>
         </div>
+
 
         <div class="form-group">
           <%= f.label :address, "住所", class: "col-3" %>
           <div class="col-6">
-            <%= f.text_field :address, class: "form-control text-left" %>
+            <%= f.text_field :address, class: "form-control text-left", id: "user_address" %>
           </div>
         </div>
 
@@ -97,17 +98,32 @@
         </div>
 
         <div class="row button-group">
-         
+
             <div class="col-3">
               <%= f.submit "更新", class: "btn btn-success btn-block" %>
             </div>
             <div class="col-3">
               <%= link_to "退会する", confirm_path(id: current_user.id), class: "btn btn-danger btn-block" %>
             </div>
-          
+
         </div>
 
       <% end %>
     </div>
   </div>
 </div>
+
+
+<script type="text/javascript">
+$(window).ready( function() {
+	$('#user_prefecture_code').jpostal({
+		postcode : [
+			'#user_postcode'
+		],
+		address : {
+			'[name="user[prefecture_code]"]'  : '%3',
+			'#user_address': "%4%5%6"
+ 		},
+	});
+});
+</script>

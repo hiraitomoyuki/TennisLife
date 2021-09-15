@@ -29,18 +29,18 @@
 
     <hr>
 
-    <div class="button-group row offset-5">
-      <div class="article-icon offset-1">
-        <div class="col-1">
+    <div class="button-group row offset-4">
+      
+        <div class="article-icon col-1 offset-2">
           <div class="favorite_<%= @article.id %>">
             <%= render "articles/favorite", article: @article %>
           </div>
         </div>
-        <div class="col-1">
+        <div class="article-icon col-1">
           <a data-toggle="modal" data-target="#modalComment"><%= icon "far", "comment-dots" %></a>
           <%= @article.comments.count %>
         </div>
-      </div>
+      
     </div>
 
     <div class="button-group">
@@ -48,7 +48,7 @@
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#CommentPost">コメントする</button>
       </div>
     </div>
-  
+
     <div class="button-group">
       <%= link_to "一覧に戻る", articles_path(circle_id: @article.circle_id), class: "btn btn-primary" %>
     </div>
@@ -99,7 +99,7 @@
               <hr>
             <% end %>
           <% end %>
-  
+
           <div class="modal-footer">
             <div class="col-3">
               <button type="button" class="btn btn-default btn-block" data-dismiss="modal">閉じる</button>
