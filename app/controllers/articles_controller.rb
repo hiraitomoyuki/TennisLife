@@ -12,9 +12,9 @@ class ArticlesController < ApplicationController
 
     @tags =ActsAsTaggableOn::Tag.most_used(5)
     @num = (1...6)
-    @favorite_ranks = Article.find(Favorite.group(:article_id).order("count(article_id) desc").limit(5).pluck(:article_id))
-    @comment_ranks = Article.find(Comment.group(:article_id).order("count(article_id) desc").limit(5).pluck(:article_id))
-    @post_ranks = Circle.find(Article.group(:article_id).order("count(circle_id) desc").limit(5).pluck(:circle_id))
+    @favorite_ranks = Article.find(Favorite.group(:id).order("count(article_id) desc").limit(5).pluck(:article_id))
+    @comment_ranks = Article.find(Comment.group(:id).order("count(article_id) desc").limit(5).pluck(:article_id))
+    @post_ranks = Circle.find(Article.group(:id).order("count(circle_id) desc").limit(5).pluck(:circle_id))
   end
 
   def show
