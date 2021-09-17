@@ -117,7 +117,7 @@
     <% end %>
     
     <div class="col-3">
-      <% if current_user.circle_id == @circle.id %>
+      <% if current_user.circle_id == @user.id %>
         <%= link_to "編集", edit_circle_path(@circle), class: "btn btn-primary btn-block" %>
       <% else %>
         <div id="bookmark_<%= @circle.id %>">
