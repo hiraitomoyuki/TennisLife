@@ -31,7 +31,7 @@ class Circle < ApplicationRecord
   end
   
   geocoded_by :address
-  after_validation :geocode
+  after_validation :geocode, if: :address_changed?
   
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
