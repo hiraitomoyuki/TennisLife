@@ -1,4 +1,4 @@
-<h1 class="text-center">トピック一覧</h1>
+<h1 class="page-title text-center">トピック一覧</h1>
 <ul>
   <% @topics.each do |topic| %>
     <li class="offset-6">
@@ -8,10 +8,12 @@
   <% end %>
 </ul>
 
-<h1 class="text-center">トピック新規登録</h1>
-<div class="col-4 offset-5">
-  <%= form_for @newTopic, :url => {:action => 'create'} do |f| %>
-    <%= f.text_field :title %>
-    <%= f.submit %>
-  <% end %>
+<h2 class="text-center">トピック新規登録</h1>
+<div class="row offset-2">
+  <div class="col-4 offset-4">
+    <%= form_for @newTopic, :url => {:action => 'create'} do |f| %>
+      <%= f.text_field :title %>
+      <%= f.submit %>
+    <% end %>
+  </div>
 </div>

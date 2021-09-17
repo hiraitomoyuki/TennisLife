@@ -10,7 +10,7 @@
 <style>
 #map {
   height: 400px;
-{
+}
 </style>
 
 <script>
@@ -43,9 +43,7 @@ function codeAddress(){
   let inputAddress = document.getElementById('address').value;
 }
 </script>
-<script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSpLScafbukQ3fE7yS-CIQAUi6gCWFEa4&callback=initMap">
-</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['SECRET_KEY'] %>&callback=initMap" async defer></script>
 <br><br>
 <div class="row text-center offset-1">
   <div class="offset-5">
