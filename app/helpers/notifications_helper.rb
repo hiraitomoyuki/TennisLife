@@ -1,14 +1,21 @@
 module NotificationsHelper
   def unchecked_notifications
   	if current_user.circle_id.present?
-	    @notifications = current_user.circle.passive_circle_notifications.where(checked: false, action: "circle").
-	     				 or(current_user.circle.passive_circle_notifications.where(checked: false, action: "withdrawal")).
-	     				 or(current_user.circle.passive_circle_notifications.where(checked: false, action: "article")).
-	     				 or(current_user.circle.passive_circle_notifications.where(checked: false, action: "event")).
-	     				 or(current_user.passive_notifications.where(checked: false)).
-	     				 where.not(visitor_id: current_user.id)
-	else
-		@notifications = current_user.passive_notifications.where(checked: false)
-	end
+  	  notices = current_user.circle.passive_circle_notifications
+  	  unchecked_notices = []
+  	  notices.each do |n|
+  	   # byebug
+  	    unless n.checked? || (n.visitor_id == current_user.id)
+    	    case n.action
+  	      when "circle", "withdrawal", "article", "event"
+  	        unchecked_notices << n
+    	    end
+    	  end
+    	end
+
+	    @notifications = unchecked_notices
+  	else
+  	　@notifications = current_user.passive_notifications.where(checked: false)
+  	end
   end
 end

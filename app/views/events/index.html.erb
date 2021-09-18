@@ -13,7 +13,7 @@
     <% if @circle.id == current_user.circle_id %>
         <!-- 新規登録フォーム -->
         <%= render 'form_new', event: @event %>
-    <% end %>
+    
 
     <!-- 予定詳細 -->
      <div id="modalEvent">
@@ -21,6 +21,8 @@
     </div>
     <!-- 予定参加者 -->
     <%= render 'entry_users', events: @events %>
+    
+    <% end %>
 </div>
 
 <script>

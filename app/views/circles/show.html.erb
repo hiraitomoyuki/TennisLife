@@ -135,7 +135,10 @@
         <%= link_to "参加希望者",circle_approvals_path(@circle), class: "btn btn-primary btn-block" %>
       <% elsif @user.circle_id == nil %>
         <% if @circle.approvals.pluck(:user_id).include?(current_user.id) %>
-          <%= link_to "参加の申請中", "#", class: "btn btn-primary btn-block" %>
+          <%= form_with model:@circle.approvals, url: approval_path(@circle.id), method: :delete  do |f| %>
+            <%= f.hidden_field :circle_id, :value => @circle_id %>
+            <%= f.submit "サークル参加申請を取り消す", class: "btn btn-danger btn-block" %>
+          <% end %>
         <% else %>
           <%= form_with model:@circle.approvals, url: circle_approvals_path(@circle.id) do |f| %>
             <%= f.hidden_field :circle_id, :value => @circle_id %>

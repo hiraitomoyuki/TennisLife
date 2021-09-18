@@ -2,9 +2,9 @@ class Comment < ApplicationRecord
   belongs_to :article
   belongs_to :user
   has_many :notifications, dependent: :destroy
-  
+
   validates :comment, presence: true
-  
+
   def create_notification_comment(current_user, comment_id)
     # 自分以外のコメントしている人に通知
     temp_ids = Comment.select(:user_id).where(article_id: id).where.not(user_id: current_user.id).distinct
