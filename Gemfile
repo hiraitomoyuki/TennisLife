@@ -84,6 +84,7 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'jquery-ui-rails'
 gem 'rails-i18n'
+gem 'pry-rails'
 
 gem 'dotenv-rails'
 group :production do

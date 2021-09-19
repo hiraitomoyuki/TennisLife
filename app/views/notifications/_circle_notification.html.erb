@@ -50,11 +50,11 @@
             </p>
 
           <% when "article" then %>
-            <%=link_to " 新しいサークル活動記録", notification.event, style: "font-weight: bold;" %>
+            <%= link_to " 新しいサークル活動記録", notification.event, style: "font-weight: bold;" %>
             <%= "を投稿しました。" %>
 
           <% when "event" then %>
-            <%= link_to "新しい予定", notification.event, style: "font-weight: bold;" %>
+            <%= link_to "新しい予定", events_path(circle_id: params[:circle_id]), style: "font-weight: bold;" %>
             <%= "を作成しました。" %>
             <p class="text-muted text-center mb-0">
               <%= notification.event.start_date.strftime("%Y-%m-%d") %>
