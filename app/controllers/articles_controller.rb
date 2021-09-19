@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
     else
       @articles = Article.all.order(created_at: :desc)
     end
-
+    
     @tags =ActsAsTaggableOn::Tag.most_used(5)
     @num = (1...6)
     @favorite_ranks = Article.find(Favorite.group(:id).order("count(article_id) desc").limit(5).pluck(:article_id))
