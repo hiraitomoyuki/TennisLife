@@ -11,21 +11,11 @@
         <% if user_signed_in? %>
           <li class="nav-item"><div class="list">ログイン : <%= current_user.nickname %> さん</div></li>
           <li>
-            <%= link_to notifications_path(user_id: current_user.id), style: "padding-right: 0;" do %>
+            <%= link_to "通知", notifications_path(user_id: current_user.id), class:"nav-link"  %>
               <!-- 未確認の通知があるか判定 -->
-
               <% if unchecked_notifications.any? %>
-                <span class="fa-stack">
-                  <%= icon "far", "bell", class: "fa-stack-2x fa-lg", style: "font-size :1.5em;" %>
-                  <%= icon "fas", "circle", class: "n-circle fa-stack-1x", style: "font-size: 15px;" %>
-                </span>
-              <% else %>
-                <span>
-                  <%= icon "far", "bell", class: "fa-lg", style: "font-size :1.5em;" %>
-                </span>
+                <%= icon "fas", "circle", class: "n-circle", style: "font-size: 15px;" %>
               <% end %>
-              <p class="notification">通知</p>
-            <% end %>
           </li>
           <li class="nav-item"><%= link_to "マイページ", user_path(current_user), class:"nav-link" %></li>
           <li class="nav-item"><%= link_to "掲示板", topics_path, class:"nav-link" %></li>
