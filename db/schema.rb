@@ -13,8 +13,8 @@
 ActiveRecord::Schema.define(version: 2021_09_14_063637) do
 
   create_table "approvals", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "circle_id"
+    t.integer "user_id", null: false
+    t.integer "circle_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "event_id"
@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 2021_09_14_063637) do
     t.integer "event_id"
     t.index ["approval_id"], name: "index_notifications_on_approval_id"
     t.index ["article_id"], name: "index_notifications_on_article_id"
+    t.index ["circle_visitor_id"], name: "index_notifications_on_circle_visitor_id"
     t.index ["comment_id"], name: "index_notifications_on_comment_id"
     t.index ["entry_id"], name: "index_notifications_on_entry_id"
     t.index ["favorite_id"], name: "index_notifications_on_favorite_id"
@@ -169,7 +170,6 @@ ActiveRecord::Schema.define(version: 2021_09_14_063637) do
     t.datetime "created_at"
     t.string "tenant", limit: 128
     t.index ["context"], name: "index_taggings_on_context"
-    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
     t.index ["tag_id"], name: "index_taggings_on_tag_id"
     t.index ["taggable_id", "taggable_type", "context"], name: "taggings_taggable_context_idx"
     t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy"
@@ -185,7 +185,6 @@ ActiveRecord::Schema.define(version: 2021_09_14_063637) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "taggings_count", default: 0
-    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   create_table "topics", force: :cascade do |t|
