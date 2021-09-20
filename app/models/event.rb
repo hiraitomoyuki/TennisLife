@@ -10,7 +10,7 @@ class Event < ApplicationRecord
   validates :end_date, presence: true
   validate :end_date_before_start_date
 
-  # 参加
+  #参加
   def entry_by?(user)
     entries.where(user_id: user.id).exists?
   end
@@ -20,7 +20,7 @@ class Event < ApplicationRecord
     self.start_date < self.end_date 
   end
 
-  # 通知機能
+  #通知機能
   def create_notification_event(current_user)
     notification = current_user.active_notifications.new(
       event_id: id,

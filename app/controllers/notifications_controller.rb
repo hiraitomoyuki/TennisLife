@@ -14,18 +14,9 @@ class NotificationsController < ApplicationController
                        where.not(visitor_id: current_user.id).page(params[:page]).per(10)
                        
       # 未チェックのものをチェック済に更新する  
-      notices = current_user.circle.passive_circle_notifications
-  	  
-  	  notices.each do |n|
-  	    unless n.checked? && (n.visitor_id == current_user.id)
-    	    case n.action
-  	      when "circle", "withdrawal", "article", "event"
-  	        
-  	        n.update_attributes(checked: true)
-    	    end
-    	  end
+      @notifications.where(checked: false).each do |notification|
+        notification.update(checked: true)
     	end
-	    #byebug
       
     end
   end

@@ -1,12 +1,15 @@
 <div class="container">
+  <!-- サークルの一覧 -->
   <% if params[:circle_id] %>
     <h1 class="page-title text-center"><%= @circle.name %> 投稿一覧</h1>
     <%= render "index", articles: @articles %>
+  <!-- タグの一覧-->
   <% elsif params[:tag_name] %>
     <h1 class="page-title text-center"><%= @tag %> タグの投稿一覧</h1>
     <%= render "index", articles: @articles %>
+  <!-- 全て-->
   <% else %>
-    <h1 class="page-title text-center">サークル活動記録　投稿一覧</h1>
+    <h1 class="page-title text-center">サークル活動記録<br>投稿一覧</h1>
     <%= render "index", articles: @articles %>
   <% end %>
 </div>

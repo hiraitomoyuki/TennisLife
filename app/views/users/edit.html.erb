@@ -6,7 +6,7 @@
   <h1 class="page-title">プロフィール編集</h1>
 </div>
 
-<div class="row">
+<div class="row offset-1">
   <div class="col-8 offset-4">
     <div class="form-horizontal">
       <%= form_with model: @user, local: true do |f| %>
@@ -15,12 +15,12 @@
           <%= f.label :image, "プロフィール画像", class: "col-3" %>
           <div class="col-3">
             <div class="profile_image">
-              <%= attachment_image_tag(@user, :image, fallback: "no_image.png", size: "100x100", class: "imag-circle") %>
+              <%= attachment_image_tag(@user, :image, fallback: "no_image.png", size: "100x100", class: "imag-circle offset-5") %>
               <%= f.attachment_field :image %>
             </div>
           </div>
         </div>
-
+        
         <div class="form-group">
           <label class="col-3 col-form-label">性別</label>
           <div class="col-2">
@@ -32,14 +32,14 @@
             <%= f.label :gender, "女性" %>
           </div>
         </div>
-
+        
         <div class="form-group">
           <%= f.label :age, "年齢", class: "col-3" %>
           <div class="col-3">
             <%= f.number_field :age, class: "form-control" %>
           </div>
         </div>
-
+        
         <div class="form-group">
           <%= f.label :nickname, "ニックネーム", class: "col-3" %>
           <div class="col-3">
@@ -53,66 +53,62 @@
             <%= f.email_field :email, class: "form-control" %>
           </div>
         </div>
-
+        
         <div class="form-group">
           <%= f.label :postal_code, "郵便番号", class: "col-3" %>
           <div class="col-3">
             <%= f.text_field :postal_code, class: "form-control", id: "user_postcode", maxlength: "7" %>
           </div>
         </div>
-
+        
         <div class="form-group">
           <%= f.label :prefecture_code, "都道府県", class: "col-3" %>
           <div class="col-6">
             <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name, include_blank: "都道府県", id: "user_prefecture_code", class: "form-control address" %>
           </div>
         </div>
-
-
+        
         <div class="form-group">
           <%= f.label :address, "住所", class: "col-3" %>
           <div class="col-6">
             <%= f.text_field :address, class: "form-control text-left", id: "user_address" %>
           </div>
         </div>
-
+        
         <div class="form-group">
           <%= f.label :racket, "ラケット", class: "col-3" %>
           <div class="col-3">
             <%= f.text_field :racket, class: "form-control" %>
           </div>
         </div>
-
+        
         <div class="form-group">
           <%= f.label :good_shot, "得意ショット", class: "col-3" %>
           <div class="col-3">
             <%= f.text_field :good_shot, class: "form-control" %>
           </div>
         </div>
-
+        
         <div class="form-group">
           <%= f.label :introduction, "自己紹介", class: "col-3" %>
           <div class="col-6">
             <%= f.text_area :introduction, class: "form-control", style: "height: 200px;" %>
           </div>
         </div>
-
+        
         <div class="row button-group">
-
-            <div class="col-3">
+            <div class="col-2">
               <%= f.submit "更新", class: "btn btn-success btn-block" %>
             </div>
-            <div class="col-3">
+            <div class="col-2">
               <%= link_to "退会する", confirm_path(id: current_user.id), class: "btn btn-danger btn-block" %>
             </div>
-
         </div>
-
+        
       <% end %>
     </div>
   </div>
 </div>
-
 
 <script type="text/javascript">
 $(window).ready( function() {

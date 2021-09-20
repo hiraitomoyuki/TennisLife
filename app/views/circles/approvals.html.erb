@@ -6,7 +6,7 @@
 
   <% else %>
     <table class="table">
-
+      
       <thead>
         <tr class="success">
           <th class="col-xs-2"></th>
@@ -17,24 +17,24 @@
           <th></th>
         </tr>
       </thead>
-
+      
       <tbody>
         <% @approvals.each do |approval| %>
           <tr>
-
+            
             <td>
               <%= attachment_image_tag(approval.user, :image, fallback: "no_image.png", size: "50x50") %>
               <%= link_to approval.user.nickname, user_path(approval.user) %>
             </td>
-
+            
             <td>
               <%= approval.user.gender %>
             </td>
-
+            
             <td>
               <%= approval.user.age %>
             </td>
-
+            
             <td>
               <% if approval.event_id.nil? %>
                 <%= "サークルへの参加希望" %>
@@ -46,7 +46,7 @@
                 <% end %>
               <% end %>
             </td>
-
+            
             <td>
               <% if approval.event_id.nil? %>
                 <%= form_with model:approval.user, url: user_path(approval.user) do |f| %>
@@ -57,7 +57,7 @@
                 <%= link_to "承認する", event_entries_path(approval.event_id, circle_id: @circle.id, user_id: approval.user_id), method: :post, remote: true, class: "btn btn-primary" %>
               <% end %>
             </td>
-
+            
             <td>
               <%= link_to "拒否する", approval_path(approval), method: :delete, class: "btn btn-danger" %>
             </td>
@@ -67,8 +67,8 @@
     </table>
   <% end %>
 
-  <div class="row text-center offset-2">
-    <div class="offset-4">
+  <div class="row text-center offset-1">
+    <div class="col-3 offset-4">
       <%= link_to "戻る", circle_path(@circle), class: "btn btn-primary" %>
     </div>
   </div>

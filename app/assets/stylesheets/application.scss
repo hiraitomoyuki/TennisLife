@@ -138,9 +138,8 @@ header {
 
 .n-circle {
   position: absolute;
-  padding-left: 1rem;
-  padding-top: 0rem;
   color: #efa04c;
+  top: 4em;
 }
 
 .fa-stack i {
@@ -159,16 +158,17 @@ header {
 .list {
   margin-top: 8px;
   margin-left: 20px;
+  margin-right: 30px;
 }
 
-.modal-footer{
+.modal-footer {
   justify-content : center;
 }
 
-.pagination{
+.pagination {
   justify-content:center;
 }
 
-.navbar-brand{
+.navbar-brand {
   padding-top: 30px;
 }

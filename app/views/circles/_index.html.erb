@@ -15,7 +15,7 @@
         <th>メンバー募集</th>
       </tr>
     </thead>
-
+    
     <tbody>
       <% prefecture_circles.each do |circle| %>
         <tr>
@@ -40,13 +40,13 @@
         <% else %>
           <p>都道府県: <%= search_prefecture.name %></p>
         <% end %>
-
+        
         <% if params[:q][:number_of_people_gteq].empty? %>
 					<p>人数: 指定なし</p>
 				<% else %>
 					<p>人数: <%= params[:q][:number_of_people_gteq] %>人以上</p>
 				<% end %>
-
+				
 				<% if params[:q][:name_cont].empty? %>
 				  <p>サークル名: 指定なし</p>
 				<% else %>
@@ -54,13 +54,13 @@
 				<% end %>
       </div>
     </div>
-
+    
     <div class="col-9">
       <% if circle.blank? %>
         <h2 class="page-title text-center">条件に合うサークルはありませんでした。</h1>
       <% else %>
         <h1  class="page-title text-center">検索結果</h1>
-
+        
         <table class="table table-bordered">
           <thead>
             <tr class="success">
@@ -70,7 +70,7 @@
               <th>メンバー募集</th>
             </tr>
           </thead>
-
+          
           <tbody>
             <% @circles.each do |circle| %>
               <tr>
@@ -102,7 +102,7 @@
           <th>メンバー募集</th>
         </tr>
       </thead>
-
+      
       <tbody>
         <% circle.each do |circle| %>
           <tr>

@@ -19,6 +19,7 @@ class Circle < ApplicationRecord
   
   attachment :image
   
+  #住所自動入力機能
   include JpPrefecture
   jp_prefecture :prefecture_code, method_name: :pref
   
