@@ -1,7 +1,7 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-light ">
     <div class="container-fluid">
-
+      
       <h1><%= link_to root_path, class:"navbar-brand" do %>
           <%= image_tag 'text_logo.png', :size =>'300x80' %>
           <% end %>
@@ -19,6 +19,11 @@
           </li>
           <li class="nav-item"><%= link_to "マイページ", user_path(current_user), class:"nav-link" %></li>
           <li class="nav-item"><%= link_to "掲示板", topics_path, class:"nav-link" %></li>
+          <li class="nav-item">
+            <% if current_user.circle_id.present? %>
+              <%= link_to "所属サークル", circle_path(current_user.circle), class:"nav-link" %>
+            <% end %>
+          </li>
           <li class="nav-item"><%= link_to "サークル検索", circles_path, class:"nav-link" %></li>
           <li class="nav-item"><%= link_to "サークル活動記録", articles_path, class:"nav-link" %></li>
           <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"nav-link" %></li>
