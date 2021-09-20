@@ -2,7 +2,7 @@ class EntriesController < ApplicationController
   def create
     entry = current_user.entries.new(event_id: params[:event_id])
     entry.save
-    #サークルに所属したら承認申請を
+    #サークルに所属したら承認申請を消す
     if params[:circle_id].present?
       approval = Approval.find_by(circle_id: params[:circle_id], user_id: params[:user_id], event_id: params[:event_id])
       approval.destroy
