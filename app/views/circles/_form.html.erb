@@ -11,7 +11,7 @@
       <%= f.attachment_field :image, class: "center-block" %>
     </div>
   </div>
-
+  
   <table class="table table-bordered table-condensed">
     <thead>
       <tr class="success">
@@ -20,47 +20,47 @@
       </tr>
     </thead>
     <tbody>
-
+      
       <tr>
         <th><%= f.label :name, "サークル名" %></th>
         <th><%= f.text_field :name, class: "form-control" %></th>
       </tr>
-
+      
       <tr>
         <th><%= f.label :theme, "活動テーマ" %></th>
         <th><%= f.text_field :theme, class: "form-control" %></th>
       </tr>
-
+      
       <tr>
         <th><%= f.label :postal_code, "活動場所(郵便番号)" %></th>
         <th><%= f.text_field :postal_code, class: "form-control postcode", id: "circle_postcode" %></th>
       </tr>
-
+      
       <tr>
         <th><%= f.label :prefecture_code, "活動場所(都道府県)" %></th>
         <th><%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, include_blank: "都道府県", class: "form-control address", id: "circle_prefecture_code" %></th>
       </tr>
-
+      
       <tr>
         <th><%= f.label :address, "活動場所(住所)" %></th>
         <th><%= f.text_field :address, class: "form-control address", id: "circle_address" %></th>
       </tr>
-
+      
       <tr>
         <th><%= f.label :practice_day, "練習日程" %></th>
         <th><%= f.text_field :practice_day, class: "form-control" %></th>
       </tr>
-
+      
       <tr>
         <th><%= f.label :number_of_people, "人数" %></th>
         <th><%= f.number_field :number_of_people, class: "form-control" %></th>
       </tr>
-
+      
       <tr>
         <th><%= f.label :entry_fee, "参加費" %></th>
         <th><%= f.text_field :entry_fee, class: "form-control" %></th>
       </tr>
-
+      
       <tr>
         <th>メンバー募集の有無</th>
         <th>
@@ -70,45 +70,45 @@
             <%= f.label :members_wanted, "募集しない" %>
         </th>
       </tr>
-
+      
       <tr>
         <th><%= f.label :crrently_recruiting_player, "メンバー募集文" %></th>
         <th><%= f.text_field :crrently_recruiting_player, class: "form-control" %></th>
       </tr>
-
+      
       <tr>
         <th><%= f.label :introduction, "サークル紹介文" %></th>
         <th><%= f.text_area :introduction, class: "form-control", style: "height: 300px;" %></th>
       </tr>
-
+      
       <tr>
         <th><%= f.label :email, "連絡先(メールアドレス)" %></th>
         <th><%= f.email_field :email, class: "form-control" %></th>
       </tr>
-
+      
       <tr>
         <th><%= f.label :facebook, "Facebookアドレス" %></th>
         <th><%= f.text_field :facebook, class: "form-control" %></th>
       </tr>
-
+      
       <tr>
         <th><%= f.label :twitter, "Twitterアドレス" %></th>
         <th><%= f.text_field :twitter, class: "form-control" %></th>
       </tr>
-
+      
       <tr>
         <th><%= f.label :instagram, "Instagramアドレス" %></th>
         <th><%= f.text_field :instagram, class: "form-control" %></th>
       </tr>
-
+      
       <tr>
         <th><%= f.label :homepage_url, "ホームページアドレス" %></th>
         <th><%= f.text_field :homepage_url, class: "form-control" %></th>
       </tr>
-
+      
     </tbody>
   </table>
-
+  
   <div class="form-group">
     <div class="text-center">
       <% if params[:id] %>
@@ -118,7 +118,7 @@
       <% end %>
     </div>
   </div>
-
+  
 <% end %>
 
 <script type="text/javascript">

@@ -4,17 +4,17 @@
         <h1 class="page-title"><%= @circle.name %>の予定</h1>
         <h4>※日付をクリックすると予定登録、予定をクリックすると詳細を確認できます</h4>
     </div>
-
+    
     <div class="button-group">
         <%= link_to "サークルに戻る", circle_path(@circle), class: "btn btn-primary" %>
     </div>
-
+    
     <div id="calendar"></div>
     <% if @circle.id == current_user.circle_id %>
         <!-- 新規登録フォーム -->
         <%= render 'form_new', event: @event %>
-    
-
+        
+        
     <!-- 予定詳細 -->
      <div id="modalEvent">
         <%= render 'show', events: @events %>

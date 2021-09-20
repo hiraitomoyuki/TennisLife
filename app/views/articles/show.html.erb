@@ -11,24 +11,24 @@
       </div>
     </div>
     <hr>
-
+    
     <div class="article_body">
       <%= @article.body %>
-
+      
       <div class="article_image">
         <%= attachment_image_tag(@article, :image, size: "200x200") %>
       </div>
     </div>
-
+    
     <hr>
-
+    
     <div class="tag-group">
       <span>タグ一覧 : </span>
       <%= render "articles/tag_list", tag_list: @article.tag_list %>
     </div>
-
+    
     <hr>
-
+    
     <div class="button-group row offset-4">
       
         <div class="article-icon col-1 offset-2">
@@ -42,17 +42,15 @@
         </div>
       
     </div>
-
+    
     <div class="button-group">
-      <div>
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#CommentPost">コメントする</button>
-      </div>
+        <button type="button" class="btn btn-success col-2" data-toggle="modal" data-target="#CommentPost">コメントする</button>
     </div>
-
+    
     <div class="button-group">
-      <%= link_to "一覧に戻る", articles_path(circle_id: @article.circle_id), class: "btn btn-primary" %>
+      <%= link_to "一覧に戻る", articles_path(circle_id: @article.circle_id), class: "btn btn-primary col-2" %>
     </div>
-
+    
     <% if @article.circle_id == current_user.circle_id %>
       <div class="button-group">
         <div class="text-center">
@@ -62,7 +60,7 @@
       </div>
     <% end %>
   </div>
-
+  
   <div id="modalComment" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -75,6 +73,7 @@
           <% else %>
             <% @article.comments.each do |comment| %>
               <div class="row">
+                
                 <div class="col-3">
                   <div class="text-center">
                     <%=link_to user_path(comment.user) do %>
@@ -82,6 +81,7 @@
                     <% end %>
                   </div>
                 </div>
+                
                 <div class="col-7">
                   <p class="text-muted">
                     <%= comment.user.nickname %>
@@ -89,17 +89,19 @@
                   </p>
                   <p><%= comment.comment %></p>
                 </div>
+                
                 <% if current_user.id == comment.user_id %>
                   <div class="col-2">
                     <br>
                     <%= link_to "コメント削除", article_comment_path(comment.article, comment), method: :delete, class: "btn btn-danger" %>
                   </div>
                 <% end %>
+                
               </div>
               <hr>
             <% end %>
           <% end %>
-
+          
           <div class="modal-footer">
             <div class="col-3">
               <button type="button" class="btn btn-default btn-block" data-dismiss="modal">閉じる</button>
@@ -109,7 +111,7 @@
       </div>
     </div>
   </div>
-
+  
   <div id="CommentPost" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-nm">
       <div class="modal-content">
@@ -117,7 +119,7 @@
           <h3 class="text-center">コメント投稿</h3>
           <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
         </div>
-
+        
         <%= form_with model: [@article, @comment] do |f| %>
           <div class="modal-body">
             <div class="error-modal"></div>
@@ -126,12 +128,14 @@
               <%= f.text_area :comment, class: "form-control" %>
             </div>
           </div>
+          
           <div class="modal-footer">
             <div>
               <%= f.submit "コメント投稿", class: "btn btn-success btn-block", data: {"turbolinks" => false} %>
             </div>
           </div>
         <% end %>
+        
       </div>
     </div>
   </div>

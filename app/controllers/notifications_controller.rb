@@ -15,9 +15,8 @@ class NotificationsController < ApplicationController
                        
       # 未チェックのものをチェック済に更新する  
       @notifications.where(checked: false).each do |notification|
-        notification.update_attributes(checked: true)
+        notification.update(checked: true)
     	end
-	    #byebug
       
     end
   end

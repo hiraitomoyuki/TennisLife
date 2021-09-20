@@ -1,7 +1,7 @@
 <div class="container">
   <div class="col-5 offset-4" style="padding-top: 20px;">
     <div>
-
+      
       <% notifications.each do |notification| %>
         <% if notification.visitor.present? %>
         <span>
@@ -13,14 +13,14 @@
             <%= "サークルに加入しました。" %>
           <% when "withdrawal" then %>
             <%= "サークルから脱退しました。" %>
-
+            
           <% when "follow" then %>
             <%= "あなたをフォローしました" %>
-
+            
           <% when "favorite" then %>
             <%= link_to "サークルの投稿", notification.article, style: "font-weight: bold:" %>
             <%= "にいいねしました。" %>
-
+            
           <% when "comment" then %>
             <% if notification.comment.article.circle_id == notification.circle_visited.id %>
               <%= link_to "あなたの投稿", notification.article, style: "font-weight: bold;" %>
@@ -34,33 +34,33 @@
             <p class="text-muted text-center mb-0">
               <%= notification.comment.comment %>
             </p>
-
+            
           <% when "article" then %>
             <%= link_to "新しいサークル活動記録", notification.article, style: "font-weight: bold;" %>
             <%= "を投稿しました。" %>
-
+            
           <% when "event" then %>
             <%= "新しい予定を作成しました。" %>
             <p class="text-muted text-center mb-0">
               <%= notification.event.start_date.strftime("%Y-%m-%d") %>
               <%= notification.event.title %>
             </p>
-
-            <% when "approval" then %>
-              <% if notification.event_id.nil? %>
-                <%= link_to "サークルへの参加", approvals_circle_path(id: notification.circle_visited), style: "font-weight: bold;" %>
-                <%= "を希望しています。" %>
-              <% else %>
-                <%= link_to "予定への参加", events_path(circle_id: params[:circle_id]), style: "font-weight: bold;" %>
-                <%= "を希望しています。" %>
-              <% end %>
+            
+          <% when "approval" then %>
+            <% if notification.event_id.nil? %>
+              <%= link_to "サークルへの参加", approvals_circle_path(id: notification.circle_visited), style: "font-weight: bold;" %>
+              <%= "を希望しています。" %>
+            <% else %>
+              <%= link_to "予定への参加", events_path(circle_id: params[:circle_id]), style: "font-weight: bold;" %>
+              <%= "を希望しています。" %>
             <% end %>
-
-            <div class="small text-muted">
-              <%= time_ago_in_words(notification.created_at).upcase %><%= "前" %>
-            </div>
-            <hr>
           <% end %>
+            
+          <div class="small text-muted">
+            <%= time_ago_in_words(notification.created_at).upcase %><%= "前" %>
+          </div>
+          <hr>
+        <% end %>
     </div>
   </div>
 </div>

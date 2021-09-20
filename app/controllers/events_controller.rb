@@ -17,7 +17,7 @@ class EventsController < ApplicationController
   def create
     @circle = Circle.find_by(id: params[:circle_id])
     @event = Event.new(event_params)
-    if @event.save!
+    if @event.save
       @event.create_notification_event(current_user)
       redirect_to events_path(circle_id: params[:event][:circle_id]), notice: "予定を作成しました。"
     else

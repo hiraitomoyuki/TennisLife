@@ -13,16 +13,21 @@ class UsersController < ApplicationController
       @circle = Circle.find(current_user.circle_id)
     end
     if @user.update(user_params)
+      #サークルidを持っていなければプロフィール更新
       if params[:user][:circle_id] == nil
         redirect_to user_path(@user), notice: "プロフィールを更新しました。"
+      #サークルidを持っていれば加入承認
       elsif params[:user][:circle_id] != nil
+        #サークルidがなければ退会処理・通知作成
         if @user.circle_id.nil?
           @approval = Notification.new(visitor_id: @user.id, circle_visited_id: params[:circle_id], action: "withdrawal")
           @approval.save
+          #サークルメンバーが誰もいなくなればサークル削除
           if @circle.users.empty?
             @circle.destroy
           end
           redirect_to user_path(current_user), alert: "サークルを脱退しました。"
+        #上記どちらでもなければサークル加入通知を作成
         else
           @approval = Approval.find_by(circle_id: params[:user][:circle_id], user_id: @user.id, event_id: nil)
           @approval.destroy
@@ -62,7 +67,7 @@ class UsersController < ApplicationController
   
   def correct_user
     @user = User.find(params[:id])
-    unless @user == current_user
+    if @user != current_user
       redirect_to user_path(current_user), alert: "他の会員の情報編集・削除は禁止です"
     end
   end

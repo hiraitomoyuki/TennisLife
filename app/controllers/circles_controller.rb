@@ -2,6 +2,7 @@ class CirclesController < ApplicationController
   before_action :set_circle, only: [:show, :edit, :update, :map, :calendar, :member, :matching, :approvals]
   
   def index
+    #検索機能
     @q = Circle.ransack(params[:q])
     @circles = @q.result(distinct: true)
     @pref = params[:prefecture_code]

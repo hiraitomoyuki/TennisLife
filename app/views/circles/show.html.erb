@@ -5,7 +5,7 @@
       <%= attachment_image_tag(@circle, :image, fallback: "no_image.png", size: "300x300", class: "img-circle") %>
     </div>
   </div>
-
+  
   <div class="row button-group">
     <div class="col-4">
       <br>
@@ -22,7 +22,7 @@
         </div>
       <% end %>
     </div>
-
+    
     <% if @circle.twitter.present? or @circle.facebook.present? or @circle.instagram.present? %>
       <div class="col-3 offset-5">
         <div class="circle-sns">
@@ -39,49 +39,49 @@
         <th></th>
       </tr>
     </thead>
-
+    
     <tbody>
-
+      
       <tr>
         <th>サークル名</th>
         <th><%= @circle.name %></th>
       </tr>
-
+      
       <tr>
         <th>活動テーマ</th>
         <th><%= @circle.theme %></th>
       </tr>
-
+      
       <tr>
         <th>活動場所(住所)</th>
         <th><%= @circle.prefecture_name %><%= @circle.address %></th>
       </tr>
-
+      
       <tr>
         <th>練習日</th>
         <th><%= @circle.practice_day %></th>
       </tr>
-
+      
       <tr>
         <th>人数</th>
         <th><%= @circle.number_of_people %>人</th>
       </tr>
-
+      
       <tr>
         <th>参加費</th>
         <th><%= @circle.entry_fee %>円</th>
       </tr>
-
+      
       <tr>
         <th>メンバー募集文</th>
         <th><%= @circle.crrently_recruiting_player %></th>
       </tr>
-
+      
       <tr>
         <th>サークル紹介文</th>
         <th><%= @circle.introduction %></th>
       </tr>
-
+      
       <% if @circle.homepage_url.present? %>
         <tr>
           <th>ホームページ</th>

@@ -1,15 +1,19 @@
 class ArticlesController < ApplicationController
   def index
+    #サークル詳細画面から遷移
     if params[:circle_id]
       @circle = Circle.find_by(id: params[:circle_id])
       @articles = Article.where(circle_id: params[:circle_id]).order(created_at: :desc)
+    #タグ検索の場合
     elsif params[:tag_name]
       @tag = params[:tag_name]
       @articles = Article.tagged_with("#{params[:tag_name]}").order(created_at: :desc)
+    #ヘッダーから遷移
     else
       @articles = Article.all.order(created_at: :desc)
     end
     
+    #ランキング機能
     @tags =ActsAsTaggableOn::Tag.most_used(5)
     @num = (1...6)
     @favorite_ranks = Article.find(Favorite.group(:id).order("count(article_id) desc").limit(5).pluck(:article_id))

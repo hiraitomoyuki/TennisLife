@@ -43,10 +43,11 @@ function codeAddress(){
   let inputAddress = document.getElementById('address').value;
 }
 </script>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['SECRET_KEY'] %>&callback=initMap" async defer></script>
 <br><br>
-<div class="row text-center offset-1">
-  <div class="offset-5">
+<div class="row text-center offset-3">
+  <div class="col-2 offset-3">
     <%= link_to "戻る", circle_path(@circle), class: "btn btn-primary" %>
   </div>
 </div>
