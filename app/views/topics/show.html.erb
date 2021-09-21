@@ -10,7 +10,7 @@
 <h3 class="text-center">新規書き込み</h3>
 <div class="row offset-2">
   <div class="col-2 offset-4">
-    <%= form_for @newpost, :url => post_create_path do |f| %>
+    <%= form_with model:@newpost, url:posts_path, local:true do |f| %>
       <p>お名前</p>
       <p><%= f.text_field :name %></p>
       <p>本文</p>
