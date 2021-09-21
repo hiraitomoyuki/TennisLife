@@ -1,9 +1,13 @@
+
+
 <h1 class="page-title text-center">トピック一覧</h1>
 <ul>
   <% @topics.each do |topic| %>
     <li class="offset-6">
       <%= link_to topic.title, topic_path(topic) %>
-      <%= link_to '[削除]', topic_path(topic), method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
+      <% if topic.user_id == current_user.id %>
+        <%= link_to '[削除]', topic_path(topic), method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
+      <% end %>
     </li>
   <% end %>
 </ul>
@@ -11,7 +15,7 @@
 <h2 class="text-center">トピック新規登録</h1>
 <div class="row offset-2">
   <div class="col-4 offset-4">
-    <%= form_for @newTopic, :url => {:action => 'create'} do |f| %>
+    <%= form_with model:@newTopic, local:true do |f| %>
       <%= f.text_field :title %>
       <%= f.submit %>
     <% end %>

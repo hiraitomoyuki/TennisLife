@@ -22,6 +22,7 @@ class User < ApplicationRecord
   has_many :favorite_articles, through: :favorites, source: :article
   has_many :comments, dependent: :destroy
   has_many :approvals, dependent: :destroy
+  has_many :topics, dependent: :destroy
   #通知機能
   has_many :active_notifications, class_name: "Notification", foreign_key: "visitor_id", dependent: :destroy #自分が送った通知
   has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy #自分に届いた通知
