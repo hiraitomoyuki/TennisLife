@@ -1,13 +1,17 @@
-
-
-<h1 class="page-title text-center">トピック一覧</h1>
+<h1 class="page-title text-center">技術相談所<br>トピック一覧(新着順)</h1>
 <ul>
   <% @topics.each do |topic| %>
-    <li class="offset-6">
-      <%= link_to topic.title, topic_path(topic) %>
-      <% if topic.user_id == current_user.id %>
-        <%= link_to '[削除]', topic_path(topic), method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
+    <li class="list-item offset-6">
+      <div class="topi">
+        <%= link_to topic.title, topic_path(topic), class: "topi" %>
+        <% if current_user.admin? %>
+          <%= link_to '[削除]', topic_path(topic), class: "topi2", method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
+        <% else %>
+          <% if topic.user_id == current_user.id  %>
+          <%= link_to '[削除]', topic_path(topic), class: "topi2", method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
+        <% end %>
       <% end %>
+      </div>
     </li>
   <% end %>
 </ul>
@@ -17,7 +21,7 @@
   <div class="col-4 offset-4">
     <%= form_with model:@newTopic, local:true do |f| %>
       <%= f.text_field :title %>
-      <%= f.submit %>
+      <%= f.submit "投稿する" %>
     <% end %>
   </div>
 </div>

@@ -18,7 +18,7 @@
               <% end %>
           </li>
           <li class="nav-item"><%= link_to "マイページ", user_path(current_user), class:"nav-link" %></li>
-          <li class="nav-item"><%= link_to "掲示板", topics_path, class:"nav-link" %></li>
+          <li class="nav-item"><%= link_to "技術相談所", topics_path, class:"nav-link" %></li>
           <li class="nav-item">
             <% if current_user.circle_id.present? %>
               <%= link_to "所属サークル", circle_path(current_user.circle), class:"nav-link" %>
