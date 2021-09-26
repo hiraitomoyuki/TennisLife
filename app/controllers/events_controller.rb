@@ -21,7 +21,7 @@ class EventsController < ApplicationController
       @event.create_notification_event(current_user)
       redirect_to events_path(circle_id: params[:event][:circle_id]), notice: "予定を作成しました。"
     else
-      render :error
+      redirect_to events_path(circle_id: params[:event][:circle_id]), alert: "予定の作成に失敗しました。"
     end
   end
 
