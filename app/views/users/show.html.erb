@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-9 offset-2">
-      <h1 class="page-title col-9 offset-2"><%= @user.nickname %> さんのページ</h1>
+      <h1 class="page-title col-9 offset-3"><%= @user.nickname %> さんのページ</h1>
       <%= attachment_image_tag(@user, :image, fallback: "no_image.png", size: "300x300", class: "imag-circle offset-3") %>
     </div>
   </div>
