@@ -8,7 +8,7 @@
       <%= attachment_image_tag(@circle, :image, fallback: "no_image.png", size: "300x300") %>
     </div>
     <div class="form-group">
-      <%= f.attachment_field :image, class: "center-block" %>
+      <%= f.attachment_field :image, class: "center-block", id: "circle_image" %>
     </div>
   </div>
   
@@ -122,6 +122,8 @@
 <% end %>
 
 <script type="text/javascript">
+
+// 住所自動入力機能
 $(window).ready( function() {
 	$('#circle_prefecture_code').jpostal({
 		postcode : [

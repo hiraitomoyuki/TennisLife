@@ -17,10 +17,49 @@
 //= require rails-ujs
 //= require jquery-ui
 //= require activestorage
+//= require tag-it
 //= require turbolinks
 //= require_tree .
 //= require moment
 //= require fullcalendar
 //= require fullcalendar/lang/ja
-//= require tag-it
+//= require tagsinput
 
+// クリッカブルマップの領域をレスポンシブにする
+$(document).ready(function(e) {
+	$('img[usemap]').rwdImageMaps();
+});
+
+// プロフィール画像プレビュー機能
+
+$(function(){
+    $('#user_image').on('change', function (e) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $(".image").attr('src', e.target.result);
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    });
+  });
+
+// 投稿画像プレビュー機能
+$(function(){
+    $('#article_image').on('change', function (e) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $(".image").attr('src', e.target.result);
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    });
+  });
+
+// サークル画像プレビュー機能
+$(function(){
+    $('#circle_image').on('change', function (e) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $(".image").attr('src', e.target.result);
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    });
+  });

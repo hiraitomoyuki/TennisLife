@@ -6,14 +6,14 @@
       <% @tags.zip(@num) do |tag, num| %>
         <tr>
           
-          <td>
+          <td class="col-3">
             <%= num %>位
           </td>
           
           <td>
             <div class="tag">
-              <span class="label label-primary">
-                <%= link_to "#{tag.name}", articles_path(tag_name: tag.name) %>
+              <span class="badge badge-primary">
+                <%= link_to "#{tag.name}", articles_path(tag_name: tag.name), class: "link" %>
               </span>
             </div>
           </td>
@@ -119,7 +119,7 @@
               <%= link_to article.title, article_path(article) %>
             </td>
             
-            <td>
+            <td class="col-2">
               <%= link_to article.circle.name, circle_path(article.circle_id) %>
             </td>
             

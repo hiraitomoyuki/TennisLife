@@ -1,7 +1,7 @@
 <% tag_list.each do |tag| %>
 <div class="tag">
-  <span class="label label-primary">
-    <%= link_to tag, articles_path(tag_name: tag) %>
+  <span class="badge badge-primary">
+    <%= link_to tag, articles_path(tag_name: tag), class: "link" %>
   </span>
 </div>
 <% end %>
