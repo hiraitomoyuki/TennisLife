@@ -7,7 +7,7 @@
         <%= f.label :image, "投稿画像", class: "col-3" %>
         <div class="col-4 offset-3">
           <%= attachment_image_tag(article, :image, fallback: "no_image.png", size: "100x100", class: "offset-10") %>
-          <%= f.attachment_field :image %>
+          <%= f.attachment_field :image, id: "article_image" %>
         </div>
       </div>
     </div>
@@ -22,7 +22,7 @@
     <div class="row form-group">
       <div class="col-9">
         <%= f.label :tag_list, "タグ" %>
-        <%= f.text_field :tag_list, value: @article.tag_list.join(','), class: "form-control" %>
+        <%= f.text_field :tag_list, value: @article.tag_list.join(','), id: 'article-tags', class: "form-control", data: {role: "tagsinput"}  %>
       </div>
     </div>
     

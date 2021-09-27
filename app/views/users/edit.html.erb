@@ -14,9 +14,9 @@
         <div class="form-group">
           <%= f.label :image, "プロフィール画像", class: "col-3" %>
           <div class="col-3">
-            <div class="profile_image">
+            <div class="image">
               <%= attachment_image_tag(@user, :image, fallback: "no_image.png", size: "100x100", class: "imag-circle offset-5") %>
-              <%= f.attachment_field :image %>
+              <%= f.attachment_field :image, id: "user_image" %>
             </div>
           </div>
         </div>
@@ -111,6 +111,8 @@
 </div>
 
 <script type="text/javascript">
+
+// 住所自動入力機能
 $(window).ready( function() {
 	$('#user_prefecture_code').jpostal({
 		postcode : [
