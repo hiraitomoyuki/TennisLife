@@ -22,6 +22,7 @@
 @import 'font-awesome';
 @import "jquery.tagit";
 @import "tagit.ui-zendesk";
+@import "tagsinput";
 
 * {
 	padding: 0;
@@ -179,14 +180,18 @@ header {
 
 .topi {
   text-decoration: none;
-  color: #808080; 
+  color: #808080;
 }
 
 .topi2 {
   text-decoration: none;
-  color: #993333; 
+  color: #993333;
 }
 
 .board {
   font-size: 20px;
+}
+
+.link {
+  color: white;
 }
