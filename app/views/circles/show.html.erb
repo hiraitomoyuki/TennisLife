@@ -74,12 +74,12 @@
 
       <tr>
         <th>メンバー募集文</th>
-        <th><%= @circle.crrently_recruiting_player %></th>
+        <th><%= safe_join(@circle.crrently_recruiting_player.split("\n"),tag(:br)) %></th>
       </tr>
 
       <tr>
         <th>サークル紹介文</th>
-        <th><%= @circle.introduction %></th>
+        <th><%= safe_join(@circle.introduction.split("\n"),tag(:br)) %></th>
       </tr>
 
       <% if @circle.homepage_url.present? %>
