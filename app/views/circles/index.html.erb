@@ -5,7 +5,9 @@
     
     <div class="row">
       <div class="col-4 offset-4">
-        <%= link_to "サークルを作る", new_circle_path, class: "btn btn-success btn-block" %>
+        <% if current_user.circle == nil %>
+          <%= link_to "サークルを作る", new_circle_path, class: "btn btn-success btn-block" %>
+        <% end %>
       </div>
     </div>
     
