@@ -42,7 +42,7 @@
           <% when "event" then %>
             <%= "新しい予定を作成しました。" %>
             <p class="text-muted text-center mb-0">
-              <%= notification.event.start_date.strftime("%Y-%m-%d") %>
+              <%= notification.event.start_date.strftime("%Y/%m/%d") %>
               <%= notification.event.title %>
             </p>
             

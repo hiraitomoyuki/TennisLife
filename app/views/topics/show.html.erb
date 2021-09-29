@@ -1,10 +1,10 @@
 <h1 class="text-center page-title"><%= @topic.title %></h1>
 <hr>
 <% @posts.each_with_index do |post , idx| %>
-  <p class="board text-center">
+  <p class="board text-left offset-4">
     <%= idx + 1 %>. <%= post.name %> : <%= post.body %> <br>
     <div class="offset-8">
-      <%= post.created_at.strftime('%Y年%m月%d日%H:%M:%S')%>
+      <%= post.created_at.strftime('%Y/%m/%d %H:%M')%>
     </div>
     <% if current_user.admin? %>
       <%= link_to '[削除]', post_path(post), class: "topi2 col-3 offset-9", method: :delete, data: {confirm: "削除してもよろしいですか？"} %>

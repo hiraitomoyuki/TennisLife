@@ -15,7 +15,7 @@ class Circle < ApplicationRecord
   validates :address, presence: true
   validates :prefecture_code, presence: true
   validates :entry_fee, presence: true
-  validates :members_wanted, presence: true
+  validates :members_wanted, inclusion: { in: [true, false] }
   
   attachment :image
   

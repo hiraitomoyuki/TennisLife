@@ -31,7 +31,7 @@
           <%= link_to "サークルの予定", events_path(circle_id: params[:circle_id]), style: "font-weight: bold;" %>
           <%= "に参加しました。" %>
           <p class="text-muted text-center mb-0">
-            <%= notification.event.start_date.strftime("%Y-%m-%d") %>
+            <%= notification.event.start_date.strftime("%Y/%m/%d") %>
             <%= notification.event.title %>
           </p>
           
