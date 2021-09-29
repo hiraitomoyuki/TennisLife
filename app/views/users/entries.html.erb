@@ -1,11 +1,11 @@
 <div class="container">
   <h1 class="page-title text-center"><%= @user.nickname %> の予定</h1>
-  
+
   <% if @user.entries.blank? %>
     <h3 class="text-center">現在、参加する予定はありません。</h3>
   <% else %>
     <table class="table table-bordered">
-      
+
       <thead>
         <tr class="success">
           <th>件名</th>
@@ -14,30 +14,30 @@
           <th>参加者数</th>
         </tr>
       </thead>
-      
+
       <tbody>
         <% @events.each do |event| %>
           <tr>
-            
+
             <td>
               <%= event.title %>
             </td>
-            
+
             <td>
-              <%= event.start_date.strftime("%Y-%m-%d %H:%M") %>
+              <%= event.start_date.strftime("%Y/%m/%d %H:%M") %>
             </td>
-            
+
             <td>
-              <%= event.end_date.strftime("%Y-%m-%d %H:%M") %>
+              <%= event.end_date.strftime("%Y/%m/%d %H:%M") %>
             </td>
-            
+
             <td>
               <%= event.entries.count %>
             </td>
           </tr>
         <% end %>
       </tbody>
-      
+
     </table>
   <% end %>
 </div>

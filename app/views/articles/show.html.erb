@@ -4,7 +4,7 @@
     <h1 class="page-title"><%= @article.title %></h1>
     <div class="row">
       <div class="col-3 offset-3">
-        <p>投稿日 : <%= @article.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+        <p>投稿日 : <%= @article.created_at.strftime("%Y/%m/%d %H:%M") %></p>
       </div>
       <div class="col-3">
         <p>投稿サークル : <%= link_to @article.circle.name, circle_path(@article.circle_id) %></p>
