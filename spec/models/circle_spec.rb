@@ -5,8 +5,8 @@ RSpec.describe Circle, type: :model do
   describe "サークルの作成" do
 
   	let(:circle){Circle.create(params)}
-  	let(:params){{name: "test", slogan: "test", prefecture_code: 1,
-  								postal_code: 1111111, address: "test", annual_fee: 1,
+  	let(:params){{name: "test", theme: "test", prefecture_code: 1,
+  								postal_code: 1111111, address: "test",
   								entry_fee: 1, members_wanted: true}}
 
   	context "作成成功" do
