@@ -15,8 +15,10 @@
 ### 主な利用シーン
 一緒にテニスを楽しむ人が欲しい時
 
-## 設計書
+### 設計書
 
+###　アプリケーション詳細設計
+<https://docs.google.com/spreadsheets/d/11r44iUd1pnADnSVrR_QEJGMwJLbQLeoQ2B_cp98mGUM/edit#gid=772912242>
 
 ### 機能一覧
 <https://docs.google.com/spreadsheets/d/1KAKsqLMgekhINJqB-vvLcuiXOFUM5xud9jqvA0e2UMU/edit?usp=sharing>
