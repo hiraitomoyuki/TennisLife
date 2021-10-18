@@ -20,7 +20,7 @@
 ###　アプリケーション詳細設計
 <https://docs.google.com/spreadsheets/d/11r44iUd1pnADnSVrR_QEJGMwJLbQLeoQ2B_cp98mGUM/edit#gid=772912242>
 
-### 機能一覧
+## 機能一覧
 <https://docs.google.com/spreadsheets/d/1KAKsqLMgekhINJqB-vvLcuiXOFUM5xud9jqvA0e2UMU/edit?usp=sharing>
 
 ### 構成図
