@@ -17,6 +17,9 @@
 
 ### 設計書
 
+テーブル定義書
+<https://docs.google.com/spreadsheets/d/1-Q-WGCJn79t9DWpKsHhlzvEUXlSeVNZ4nw2rRijkDjI/edit?usp=sharing>
+
 アプリケーション詳細設計
 <https://docs.google.com/spreadsheets/d/11r44iUd1pnADnSVrR_QEJGMwJLbQLeoQ2B_cp98mGUM/edit#gid=772912242>
 
