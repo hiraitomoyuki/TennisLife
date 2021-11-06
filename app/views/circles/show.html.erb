@@ -2,7 +2,7 @@
   <div class="text-center">
     <h1 class="page-title"><%= @circle.name %></h1>
     <div class="form-group">
-      <%= attachment_image_tag(@circle, :image, fallback: "no_image.png", size: "300x300", class: "img-circle") %>
+      <%= attachment_image_tag(@circle, :image, fallback: "no_image.png", width: "300", class: "img-circle") %>
     </div>
   </div>
 
