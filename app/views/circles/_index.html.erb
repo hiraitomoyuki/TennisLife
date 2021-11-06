@@ -1,3 +1,4 @@
+<span id="result"></span>
 <% if params[:prefecture_code] %>
 
 <h1 class="page-title text-center"><%= prefecture.name %> のサークル一覧</h1>
@@ -117,3 +118,9 @@
     </table>
   <% end %>
 <% end %>
+
+<script>
+        <% if params[:prefecture_code] || params[:q] %>
+                location.hash = 'result';
+        <% end %>
+        </script>
