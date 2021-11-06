@@ -26,7 +26,7 @@
  ER図<br>
  ・<https://app.diagrams.net/#G1aGWGr3b2dt-gSlys1UfiUDfjzMNbbmpG>
 
-## 機能一覧
+### 機能一覧
 ・<https://docs.google.com/spreadsheets/d/1KAKsqLMgekhINJqB-vvLcuiXOFUM5xud9jqvA0e2UMU/edit?usp=sharing>
 
 ### 構成図
