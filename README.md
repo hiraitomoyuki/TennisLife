@@ -21,7 +21,7 @@
  ・<https://docs.google.com/spreadsheets/d/1-Q-WGCJn79t9DWpKsHhlzvEUXlSeVNZ4nw2rRijkDjI/edit?usp=sharing>
 
  アプリケーション詳細設計<br>
- ・<https://docs.google.com/spreadsheets/d/11r44iUd1pnADnSVrR_QEJGMwJLbQLeoQ2B_cp98mGUM/edit#gid=772912242>
+・<https://docs.google.com/spreadsheets/d/11r44iUd1pnADnSVrR_QEJGMwJLbQLeoQ2B_cp98mGUM/edit#gid=772912242>
 
  ER図<br>
  ・<https://app.diagrams.net/#G1aGWGr3b2dt-gSlys1UfiUDfjzMNbbmpG>
