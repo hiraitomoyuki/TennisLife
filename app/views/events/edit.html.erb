@@ -26,14 +26,15 @@
           <div class="form-group">
             <%= f.label :start, "開始日時", class: "col-2" %>
             <div class="col-6">
-              <%= f.datetime_select :start, use_month_numbers: true, minute_step: 10, class: "form-control"  %>
+              <%= f.datetime_select :start_date, default: @event.start_date ,use_month_numbers: true, minute_step: 10, class: "form-control"  %>
             </div>
           </div>
           
           <div class="form-group">
             <%= f.label :end, "終了日時", class: "col-2" %>
             <div class="col-6">
-              <%= f.datetime_select :end, use_month_numbers: true, minute_step: 10, class: "form-control"  %>
+              <%= f.datetime_select :end_date, default: @event.end_date ,use_month_numbers: true, minute_step: 10, class: "form-control"  %>
+
             </div>
           </div>
           
