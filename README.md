@@ -18,15 +18,15 @@
 ### 設計書
 
  テーブル定義書<br>
- ・<https://docs.google.com/spreadsheets/d/1-Q-WGCJn79t9DWpKsHhlzvEUXlSeVNZ4nw2rRijkDjI/edit?usp=sharing>
+ <https://docs.google.com/spreadsheets/d/1-Q-WGCJn79t9DWpKsHhlzvEUXlSeVNZ4nw2rRijkDjI/edit?usp=sharing>
 
- アプリケーション詳細設計<br>・<https://docs.google.com/spreadsheets/d/11r44iUd1pnADnSVrR_QEJGMwJLbQLeoQ2B_cp98mGUM/edit#gid=772912242>
+ アプリケーション詳細設計<br><https://docs.google.com/spreadsheets/d/11r44iUd1pnADnSVrR_QEJGMwJLbQLeoQ2B_cp98mGUM/edit#gid=772912242>
 
  ER図<br>
- ・<https://app.diagrams.net/#G1aGWGr3b2dt-gSlys1UfiUDfjzMNbbmpG>
+ <https://app.diagrams.net/#G1aGWGr3b2dt-gSlys1UfiUDfjzMNbbmpG>
 
 ### 機能一覧
-・<https://docs.google.com/spreadsheets/d/1KAKsqLMgekhINJqB-vvLcuiXOFUM5xud9jqvA0e2UMU/edit?usp=sharing>
+<https://docs.google.com/spreadsheets/d/1KAKsqLMgekhINJqB-vvLcuiXOFUM5xud9jqvA0e2UMU/edit?usp=sharing>
 
 ### 構成図
-・<https://app.diagrams.net/#G1UXH0t_pO4L-GLgWMkILl54K4zglC_Hcu>
+<https://app.diagrams.net/#G1UXH0t_pO4L-GLgWMkILl54K4zglC_Hcu>
